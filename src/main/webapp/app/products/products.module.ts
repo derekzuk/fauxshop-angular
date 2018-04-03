@@ -1,14 +1,14 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { PRODUCT_HOME_ROUTE, ProductHomeComponent } from './';
+import { PRODUCTS_ROUTE, ProductsComponent } from './';
 
 @NgModule({
     imports: [
-        RouterModule.forRoot([ PRODUCT_HOME_ROUTE ])
+        RouterModule.forRoot([ PRODUCTS_ROUTE ])
     ],
     declarations: [
-        ProductHomeComponent,
+        ProductsComponent,
     ],
     entryComponents: [
     ],
@@ -16,4 +16,4 @@ import { PRODUCT_HOME_ROUTE, ProductHomeComponent } from './';
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class FauxshopangularProductHomeModule {}
+export class FauxshopangularProductsModule {}

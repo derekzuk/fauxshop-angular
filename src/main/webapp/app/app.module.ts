@@ -26,6 +26,7 @@ import {
     PageRibbonComponent,
     ErrorComponent
 } from './layouts';
+import { ProductHomeComponent } from './product-home/product-home.component';
 
 @NgModule({
     imports: [
@@ -44,7 +45,8 @@ import {
         NavbarComponent,
         ErrorComponent,
         PageRibbonComponent,
-        FooterComponent
+        FooterComponent,
+        ProductHomeComponent
     ],
     providers: [
         ProfileService,
@@ -84,6 +86,6 @@ import {
             ]
         }
     ],
-    bootstrap: [ JhiMainComponent ]
+    bootstrap: [ ProductHomeComponent ]
 })
 export class FauxshopangularAppModule {}

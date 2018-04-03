@@ -4,6 +4,8 @@ import { RouterModule } from '@angular/router';
 import { FauxshopangularSharedModule } from '../shared';
 
 import { AboutComponent } from './about/about.component';
+import { BlogComponent } from './blog/blog.component';
+import { ContactComponent } from './contact/contact.component';
 import { aboutBlogContactState } from './';
 
 @NgModule({
@@ -12,7 +14,9 @@ import { aboutBlogContactState } from './';
         RouterModule.forChild(aboutBlogContactState)
     ],
     declarations: [
-        AboutComponent
+        AboutComponent,
+        BlogComponent,
+        ContactComponent
     ],
     providers: [
     ],

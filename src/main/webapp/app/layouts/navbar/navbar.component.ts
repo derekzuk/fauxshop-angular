@@ -9,10 +9,7 @@ import { VERSION } from '../../app.constants';
 
 @Component({
     selector: 'jhi-navbar',
-    templateUrl: './navbar.component.html',
-    styleUrls: [
-        'navbar.scss'
-    ]
+    templateUrl: './navbar.component.html'
 })
 export class NavbarComponent implements OnInit {
     inProduction: boolean;

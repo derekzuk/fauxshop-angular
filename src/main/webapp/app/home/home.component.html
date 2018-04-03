@@ -1,45 +1,125 @@
-<div class="row">
-    <div class="col-md-3">
-        <span class="hipster img-fluid rounded"></span>
-    </div>
-    <div class="col-md-9">
-        <h1 class="display-4">Welcome, Java Hipster!</h1>
-        <p class="lead">This is your homepage</p>
-
-        <div [ngSwitch]="isAuthenticated()">
-            <div class="alert alert-success" *ngSwitchCase="true">
-                <span *ngIf="account"
-                   > You are logged in as user "{{account.login}}". </span>
-            </div>
-
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>If you want to </span>
-                <a class="alert-link" (click)="login()">sign in</a><span>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").</span>
-            </div>
-            <div class="alert alert-warning" *ngSwitchCase="false">
-                <span>You don't have an account yet?</span>
-                <a class="alert-link" routerLink="register">Register a new account</a>
-            </div>
-
-            <div>
-                <a routerLink="product-home">Product Home</a>
+<div id="wrap">
+    <div id="main-nav" class="">
+        <div class="container-fluid">
+            <div class="nav-header">
+                <a href="index.html" class="nav-brand">STELLA <span>SHOP</span></a>
+                <a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>
+                <a class="nav-icon-outline cart pull-right" href="cart.html"><i class="icon-cart"></i><span class="badge">3</span></a>
             </div>
         </div>
-
-        <p>
-            If you have any question on JHipster:
-        </p>
-
-        <ul>
-            <li><a href="http://www.jhipster.tech/" target="_blank" rel="noopener">JHipster homepage</a></li>
-            <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank" rel="noopener">JHipster on Stack Overflow</a></li>
-            <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank" rel="noopener">JHipster bug tracker</a></li>
-            <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank" rel="noopener">JHipster public chat room</a></li>
-            <li><a href="https://twitter.com/java_hipster" target="_blank" rel="noopener">follow @java_hipster on Twitter</a></li>
-        </ul>
-
-        <p>
-            <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
-        </p>
     </div>
+
+    <div class="container-fluid productlist">
+        <div class="row">
+            <div class="col-sm-8">
+                <a routerLink="/products" routerLinkActive="active">
+                    <img src="../../content/images/vase_1a.jpg" class="img-responsive" alt="item">
+                    <span class="productlist-price-container">
+                        <span class="product-price">
+                            <span class="price">14.00</span>
+                        </span>
+                    </span>
+                </a>
+            </div>
+            <div class="col-sm-4 special">
+                <div class="col-sm-12">
+                    <a href="product2.html">
+                        <img src="../../content/images/vase_2a.jpg"  class="img-responsive" alt="item">
+                        <span class="productlist-price-container">
+									<span class="product-price">
+										<span class="price">28.00</span>
+									</span>
+								</span>
+                    </a>
+                </div>
+                <div class="col-sm-12">
+                    <a href="product5.html">
+                        <img src="../../content/images/vase_3a.jpg"  class="img-responsive" alt="item">
+                        <div class="productlist-label">
+                            <span class="sale-label">Sale</span>
+                        </div>
+                        <span class="productlist-price-container">
+									<span class="product-price">
+										<span class="price">54.00</span>
+										<span class="original-price">
+											<span class="price">65.00</span>
+										</span>
+									</span>
+								</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4 special">
+                <div class="col-sm-12">
+                    <a href="product4.html">
+                        <img src="../../content/images/vase_4a.jpg"  class="img-responsive" alt="item">
+                        <span class="productlist-price-container">
+									<span class="product-price">
+										<span class="price">16.00</span>
+									</span>
+								</span>
+                    </a>
+                </div>
+                <div class="col-sm-12">
+                    <a href="product5.html">
+                        <img src="../../content/images/vase_5a.jpg"  class="img-responsive" alt="item">
+                        <div class="productlist-label">
+                            <span class="sale-label">Sale</span>
+                        </div>
+                        <span class="productlist-price-container">
+									<span class="product-price">
+										<span class="price">54.00</span>
+										<span class="original-price">
+											<span class="price">65.00</span>
+										</span>
+									</span>
+								</span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <a href="product6.html">
+                    <img src="../../content/images/vase_6a.jpg" class="img-responsive" alt="item">
+                    <div class="productlist-label">
+                        <span class="sold-out-label">Sold Out</span>
+                    </div>
+                    <span class="productlist-price-container">
+								<span class="product-price">
+									<span class="price">38.00</span>
+								</span>
+							</span>
+                </a>
+            </div>
+        </div>
+        <div class="row" id="more-items">
+            <div class="col-sm-6">
+                <a href="product7.html">
+                    <img src="../../content/images/vase_7a.jpg"  class="img-responsive" alt="item">
+                    <span class="productlist-price-container">
+								<span class="product-price">
+									<span class="price">17.00</span>
+								</span>
+							</span>
+                </a>
+            </div>
+            <div class="col-sm-6">
+                <a href="product8.html">
+                    <img src="../../content/images/vase_8a.jpg"  class="img-responsive" alt="item">
+                    <span class="productlist-price-container">
+								<span class="product-price">
+									<span class="price">21.00</span>
+								</span>
+							</span>
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center show-more">
+                <a href="#" class="btn btn-outline" id="showmore">Show more</a>
+            </div>
+        </div>
+    </div>
+
 </div>

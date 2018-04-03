@@ -16,7 +16,6 @@ import { FauxshopangularHomeModule } from './home/home.module';
 import { FauxshopangularAdminModule } from './admin/admin.module';
 import { FauxshopangularAccountModule } from './account/account.module';
 import { FauxshopangularEntityModule } from './entities/entity.module';
-import { FauxshopangularProductHomeModule } from './product-home/product-home.module';
 import { FauxshopangularProductsModule } from './products/products.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
@@ -28,7 +27,6 @@ import {
     PageRibbonComponent,
     ErrorComponent
 } from './layouts';
-import { ProductHomeComponent } from './product-home/product-home.component';
 import { ProductsComponent } from './products/products.component';
 
 @NgModule({
@@ -41,7 +39,6 @@ import { ProductsComponent } from './products/products.component';
         FauxshopangularAdminModule,
         FauxshopangularAccountModule,
         FauxshopangularEntityModule,
-        FauxshopangularProductHomeModule,
         FauxshopangularProductsModule
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],

@@ -6,7 +6,6 @@
 .modal.show .modal-dialog {
     transform: translate(0, 0);
 }
-
 a:not([href]):not([tabindex]) {
     color: #000000;
 }

@@ -1,31 +1,14 @@
 import { Routes } from '@angular/router';
 
-import { ProductsComponent } from './products.component';
+import { product1Route } from './product1/product1.route';
+import { product2Route } from './product2/product2.route';
 
-export const products_state: Routes = [{
+const PRODUCT_ROUTES = [
+    product1Route,
+    product2Route
+];
+
+export const productState: Routes = [{
     path: '',
-    component: ProductsComponent,
-    children: [
-        {
-            path: '1',
-            component: ProductsComponent,
-            data: {
-                productNumber: '1'
-            }
-        },
-        {
-            path: '2',
-            component: ProductsComponent,
-            data: {
-                productNumber: '2'
-            }
-        },
-        {
-            path: '3',
-            component: ProductsComponent,
-            data: {
-                productNumber: '3'
-            }
-        },
-    ]
+    children: PRODUCT_ROUTES
 }];

@@ -1,14 +1,17 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { products_state, ProductsComponent } from './';
+import { productState } from './';
+import { Product1Component } from './product1/product1.component';
+import { Product2Component } from './product2/product2.component';
 
 @NgModule({
     imports: [
-        RouterModule.forChild( products_state )
+        RouterModule.forChild( productState )
     ],
     declarations: [
-        ProductsComponent,
+        Product1Component,
+        Product2Component,
     ],
     entryComponents: [
     ],

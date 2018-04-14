@@ -10,15 +10,14 @@ import { Product } from '../../shared/shop/product.model';
 export class Product1Component implements OnInit {
     productNumber: string;
     product: Product;
-    productService: ProductService;
 
-    constructor(private router: Router, productService: ProductService) {
-        this.productService = productService;
+    constructor(private router: Router, private productService: ProductService) {
     }
 
     ngOnInit() {
         this.productService.getProductsByProductsId(1).subscribe((productData) => {
-            console.log(productData);
+            this.product = productData;
+            console.log(this.product);
         });
     }
 

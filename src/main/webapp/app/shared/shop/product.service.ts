@@ -12,7 +12,10 @@ export class ProductService {
     }
 
     getProductsByProductsId(productsId: number): Observable<any> {
-        return this.http.get<Product>(`${this.resourceUrl}/${productsId}`, { observe: 'response' });
+        return this.http.get<Product>(`${this.resourceUrl}/${productsId}`, { observe: 'response' })
+            .map((res: HttpResponse<any>) => {
+                return res.body;
+            }).catch((error: Response) => Observable.throw(error.json()));
     }
 
 

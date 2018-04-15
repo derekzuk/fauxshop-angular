@@ -1,4 +1,7 @@
-export class Product {
+export class Cart {
+        public cartId?: number;
+        public id?: number;
+        public cartItemQuantity?: number;
         public productsId?: number;
         public productsQuantity?: number;
         public productsModel?: string;
@@ -8,16 +11,19 @@ export class Product {
         public productsDateAdded?: string;
         public productsLastModified?: string;
         public productsDateAvailable?: string;
-        public productsWeight?: string;
-        public productsStatus?: string;
-        public productsTaxClassId?: string;
-        public manufacturersId?: string;
+        public productsWeight?: number;
+        public productsStatus?: boolean;
+        public productsTaxClassId?: number;
+        public manufacturersId?: number;
         public productsDescription?: string;
         public productsName?: string;
         public productsURL?: string;
         public productsViewed?: number;
 
     constructor(
+        cartId?: number,
+        id?: number,
+        cartItemQuantity?: number,
         productsId?: number,
         productsQuantity?: number,
         productsModel?: string,
@@ -27,15 +33,18 @@ export class Product {
         productsDateAdded?: string,
         productsLastModified?: string,
         productsDateAvailable?: string,
-        productsWeight?: string,
-        productsStatus?: string,
-        productsTaxClassId?: string,
-        manufacturersId?: string,
+        productsWeight?: number,
+        productsStatus?: boolean,
+        productsTaxClassId?: number,
+        manufacturersId?: number,
         productsDescription?: string,
         productsName?: string,
         productsURL?: string,
         productsViewed?: number
     ) {
+        this.cartId = cartId ? cartId : null;
+        this.id = id ? id : null;
+        this.cartItemQuantity = cartItemQuantity ? cartItemQuantity : null;
         this.productsId = productsId ? productsId : null;
         this.productsQuantity = productsQuantity ? productsQuantity : null;
         this.productsModel = productsModel ? productsModel : null;
@@ -45,12 +54,12 @@ export class Product {
         this.productsDateAdded = productsDateAdded ? productsDateAdded : null;
         this.productsLastModified = productsLastModified ? productsLastModified : null;
         this.productsDateAvailable = productsDateAvailable ? productsDateAvailable : null;
-        this.productsWeight = productsWeight ? productsWeight : null;
+        this.productsWeight = productsWeight ? productsWeight : 0;
         this.productsStatus = productsStatus ? productsStatus : null;
         this.productsTaxClassId = productsTaxClassId ? productsTaxClassId : null;
         this.manufacturersId = manufacturersId ? manufacturersId : null;
         this.productsDescription = productsDescription ? productsDescription : null;
-        this.productsName = productsName ? productsName : null;
+        this.productsName = productsName ? productsName : "";
         this.productsURL = productsURL ? productsURL : null;
         this.productsViewed = productsViewed ? productsViewed : null;
     }

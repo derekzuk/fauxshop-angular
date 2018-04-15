@@ -1,96 +1,90 @@
-<h1>Product 2</h1>
-<div>Product Name: {{product.productsName}}</div>
-<div>Product ID: {{product.productsId}}</div>
-
-<!--<div id="wrap">-->
+<div id="wrap">
     <!--<div id="main-nav" class="">-->
-        <!--<div class="container-fluid">-->
-            <!--<div class="nav-header">-->
-                <!--<a href="index.html" class="nav-brand">STELLA <span>SHOP</span></a>-->
-                <!--&lt;!&ndash;<a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>&ndash;&gt;-->
-                <!--&lt;!&ndash;<a class="nav-icon-outline cart pull-right" ui-sref="cart"><i class="icon-cart"></i><span class="badge">{{vm.cartInvoices.length}}</span></a>&ndash;&gt;-->
-                <!--<a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>-->
-                <!--<div ng-switch="vm.isAuthenticated()">-->
-                    <!--<a class="pull-right" ng-switch-when="true">You are logged in as {{vm.account.login}}</a>-->
-                <!--</div>-->
-                <!--<a class="nav-icon-outline cart pull-right" ui-sref="cart"><i class="icon-cart"></i><span class="badge">{{vm.cartInvoices.length}}</span></a>-->
-            <!--</div>-->
-        <!--</div>-->
+    <!--<div class="container-fluid">-->
+    <!--<div class="nav-header">-->
+    <!--<a href="index.html" class="nav-brand">STELLA <span>SHOP</span></a>-->
+    <!--&lt;!&ndash;<a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>&ndash;&gt;-->
+    <!--&lt;!&ndash;<a class="nav-icon-outline cart pull-right" ui-sref="cart"><i class="icon-cart"></i><span class="badge">{{vm.cartInvoices.length}}</span></a>&ndash;&gt;-->
+    <!--<a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>-->
+    <!--<div ng-switch="vm.isAuthenticated()">-->
+    <!--<a class="pull-right" ng-switch-when="true">You are logged in as {{vm.account.login}}</a>-->
+    <!--</div>-->
+    <!--<a class="nav-icon-outline cart pull-right" ui-sref="cart"><i class="icon-cart"></i><span class="badge">{{vm.cartInvoices.length}}</span></a>-->
+    <!--</div>-->
+    <!--</div>-->
     <!--</div>-->
 
-    <!--<div class="container-fluid hidden-xs">-->
-        <!--<div class="row">-->
-            <!--<ol class="breadcrumb">-->
-                <!--<li><a href="index.html">Shop</a></li>-->
-                <!--<li class="active">{{vm.product.productsName}}</li>-->
-            <!--</ol>-->
-        <!--</div>-->
-    <!--</div>-->
+    <div class="container-fluid hidden-xs">
+        <div class="row">
+            <ol class="breadcrumb">
+                <li><a href="index.html">Shop</a></li>
+                <li class="active">{{product.productsName}}</li>
+            </ol>
+        </div>
+    </div>
 
-    <!--<div class="container-fluid product">-->
-        <!--<div class="row visible-xs product-mobile">-->
-            <!--<div class="col-xs-12 text-center">-->
-                <!--<h2 class="product-title">{{vm.product.productsName}}</h2>-->
-                <!--<div class="product-price">-->
-                    <!--<span class="price">{{vm.product.productsPrice}}</span>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-            <!--<div class="col-sm-8 ">-->
-                <!--<img src="{{vm.product.productsImage}}" class="product-img img-responsive" alt="item">-->
-                <!--<img src="../../content/images/vase_1a.jpg" class="product-img img-responsive" alt="item">-->
-                <!--<img src="../../content/images/vase_1b.jpg" class="product-img img-responsive" alt="item">-->
-                <!--<img src="../../content/images/vase_1c.jpg" class="product-img img-responsive" alt="item">-->
-            <!--</div>-->
-            <!--<div class="col-sm-4 ">-->
-                <!--<h2 class="product-title hidden-xs">{{vm.product.productsName}}</h2>-->
-                <!--<div class="product-price hidden-xs">-->
-                    <!--<span class="price">{{vm.product.productsPrice.toFixed(2)}}</span>-->
-                <!--</div>-->
-                <!--<div class="product-detail">-->
-                    <!--<p>{{vm.product.productsDescription}}</p>-->
-                    <!--<ul>-->
-                        <!--<li>Holds objects, collections of stones or shells, or candles (sold separately) for a striking display.</li>-->
-                        <!--<li>Weighty bases are designed to counterbalance top-heavy stems.</li>-->
-                        <!--<li>Fluid design is finished with a cut rim.</li>-->
-                        <!--<li>Monogramming is available at an additional charge.</li>-->
-                        <!--<li>Monogram will be centered on the side of the bowl.</li>-->
-                        <!--<li>Small: 6.5" diameter, 7" high</li>-->
-                    <!--</ul>-->
-                <!--</div>-->
-                <!--<form class="myform" role="form" ng-submit="vm.addToCart(1)">-->
-                    <!--<div class="form-group clearfix">-->
-                        <!--<label class="control-label">Size</label>-->
-                        <!--<select class="form-control">-->
-                            <!--<option value="XS">XS</option>-->
-                            <!--<option value="S">S</option>-->
-                            <!--<option value="M">M</option>-->
-                            <!--<option value="L">L</option>-->
-                            <!--<option value="XL">XL</option>-->
-                        <!--</select>-->
-                    <!--</div>-->
+    <div class="container-fluid product">
+        <div class="row visible-xs product-mobile">
+            <div class="col-xs-12 text-center">
+                <h2 class="product-title">{{product.productsName}}</h2>
+                <div class="product-price">
+                    <span class="price">{{product.productsPrice}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 ">
+                <img src="../../../content/images/vase_2a.jpg" class="product-img img-responsive" alt="item">
+                <img src="../../../content/images/vase_2b.jpg" class="product-img img-responsive" alt="item">
+            </div>
+            <div class="col-sm-4 ">
+                <h2 class="product-title hidden-xs">{{product.productsName}}</h2>
+                <div class="product-price hidden-xs">
+                    <span class="price">{{product.productsPrice.toFixed(2)}}</span>
+                </div>
+                <div class="product-detail">
+                    <p>{{product.productsDescription}}</p>
+                    <ul>
+                        <li>Holds objects, collections of stones or shells, or candles (sold separately) for a striking display.</li>
+                        <li>Weighty bases are designed to counterbalance top-heavy stems.</li>
+                        <li>Fluid design is finished with a cut rim.</li>
+                        <li>Monogramming is available at an additional charge.</li>
+                        <li>Monogram will be centered on the side of the bowl.</li>
+                        <li>Small: 6.5" diameter, 7" high</li>
+                    </ul>
+                </div>
+                <form class="myform" role="form" ng-submit="vm.addToCart(1)">
+                    <div class="form-group clearfix">
+                        <label class="control-label">Size</label>
+                        <select class="form-control">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
 
-                    <!--<ul class="product-colors">-->
-                        <!--<li class="selected"><a class="white" style="background-color:#FFF"> </a></li>-->
-                        <!--<li class=""><a style="background-color:#000"> </a></li>-->
-                        <!--<li class=""><a style="background-color:#49A3F1"> </a></li>-->
-                        <!--<li class=""><a style="background-color:#FF6279"> </a></li>-->
-                    <!--</ul>-->
+                    <ul class="product-colors">
+                        <li class="selected"><a class="white" style="background-color:#FFF"> </a></li>
+                        <li class=""><a style="background-color:#000"> </a></li>
+                        <li class=""><a style="background-color:#49A3F1"> </a></li>
+                        <li class=""><a style="background-color:#FF6279"> </a></li>
+                    </ul>
 
-                    <!--<div class="product-btn">-->
-                        <!--<button class="btn">Add To Cart</button>-->
-                    <!--</div>-->
-                <!--</form>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="row">-->
-            <!--<div class="col-sm-8 ">-->
-                <!--<div class="paging clearfix">-->
-                    <!--<a class="btn btn-outline pull-right" ui-sref="product2"><span>Next</span><span class="hidden-xs"> Product</span><i class="icon-arrow-right2 right"></i></a>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
+                    <div class="product-btn">
+                        <button class="btn">Add To Cart</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8 ">
+                <div class="paging clearfix">
+                    <a class="btn btn-outline pull-right" ui-sref="product2"><span>Next</span><span class="hidden-xs"> Product</span><i class="icon-arrow-right2 right"></i></a>
+                </div>
+            </div>
+        </div>
 
-    <!--</div>-->
-<!--</div>-->
+    </div>
+</div>

@@ -18,6 +18,4 @@ export class ProductService {
             }).catch((error: Response) => Observable.throw(error.json()));
     }
 
-
-
 }

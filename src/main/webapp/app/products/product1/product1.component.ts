@@ -9,19 +9,16 @@ import { Product } from '../../shared/shop/product.model';
 })
 export class Product1Component implements OnInit {
     productNumber: string;
-    product: Product;
+    product = new Product;
 
     constructor(private router: Router, private productService: ProductService) {
+
     }
 
     ngOnInit() {
         this.productService.getProductsByProductsId(1).subscribe((productData) => {
             this.product = productData;
-            console.log(this.product);
         });
-    }
-
-    ngOnDestroy() {
     }
 
 }

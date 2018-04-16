@@ -12,7 +12,7 @@ import { ProductService } from '../../shared/shop/product.service';
 export class Product1Component implements OnInit {
     productNumber: string;
     product = new Product;
-    cart = new Cart;
+    cart: Cart[] = [];
 
     constructor(private router: Router,
                 private cartService: CartService,

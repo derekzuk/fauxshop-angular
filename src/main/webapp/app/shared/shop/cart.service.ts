@@ -12,7 +12,7 @@ export class CartService {
     }
 
     getCartByUserId(userId: number): Observable<any> {
-        return this.http.get<Cart>(`${this.resourceUrl}/${userId}`, { observe: 'response' })
+        return this.http.get(`${this.resourceUrl}/${userId}`, { observe: 'response' })
             .map((res: HttpResponse<any>) => {
                 return res.body;
             }).catch((error: Response) => Observable.throw(error.json()));

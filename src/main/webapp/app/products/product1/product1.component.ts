@@ -4,6 +4,8 @@ import { Cart } from '../../shared/shop/cart.model';
 import { CartService } from '../../shared/shop/cart.service';
 import { Product } from '../../shared/shop/product.model';
 import { ProductService } from '../../shared/shop/product.service';
+import { Account, Principal } from '../../shared';
+import { JhiEventManager } from 'ng-jhipster';
 
 @Component({
   selector: 'jhi-product1',
@@ -13,13 +15,21 @@ export class Product1Component implements OnInit {
     productNumber: string;
     product = new Product;
     cart: Cart[] = [];
+    account: Account;
 
     constructor(private router: Router,
+                private principal: Principal,
+                private eventManager: JhiEventManager,
                 private cartService: CartService,
                 private productService: ProductService) {
     }
 
     ngOnInit() {
+        this.principal.identity().then((account) => {
+            this.account = account;
+        });
+        this.registerAuthenticationSuccess();
+
         this.productService.getProductsByProductsId(1).subscribe((productData) => {
             this.product = productData;
             console.log(this.product);
@@ -28,6 +38,18 @@ export class Product1Component implements OnInit {
         this.cartService.getCartByUserId(5).subscribe((cartData) => {
             this.cart = cartData;
             console.log(this.cart);
+        });
+    }
+
+    isAuthenticated() {
+        return this.principal.isAuthenticated();
+    }
+
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', (message) => {
+            this.principal.identity().then((account) => {
+                this.account = account;
+            });
         });
     }
 

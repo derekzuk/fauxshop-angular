@@ -27,17 +27,12 @@ export class Product1Component implements OnInit {
     ngOnInit() {
         this.principal.identity().then((account) => {
             this.account = account;
+            this.updateCart();
         });
         this.registerAuthenticationSuccess();
 
         this.productService.getProductsByProductsId(1).subscribe((productData) => {
             this.product = productData;
-            console.log(this.product);
-        });
-
-        this.cartService.getCartByUserId(5).subscribe((cartData) => {
-            this.cart = cartData;
-            console.log(this.cart);
         });
     }
 
@@ -49,8 +44,17 @@ export class Product1Component implements OnInit {
         this.eventManager.subscribe('authenticationSuccess', (message) => {
             this.principal.identity().then((account) => {
                 this.account = account;
+                this.updateCart();
             });
         });
+    }
+
+    updateCart() {
+        if (this.account != null) {
+            this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
+                this.cart = cartData;
+            });
+        }
     }
 
 }

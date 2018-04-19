@@ -24,31 +24,33 @@
     <div class="container-fluid cart-list">
         <div class="row">
             <div class="col-sm-8">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Unit Cost</th>
-                        <th class="text-center">Quantity</th>
-                        <th class="text-right">Total</th>
-                        <th></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let cartInvoice of cart">
-                        <td class="vert-align"><a routerLink="/{{cartInvoice.productsURL}}">{{cartInvoice.productsName}}</a></td>
-                        <td class="vert-align">{{ cartInvoice.productsPrice | currency }}</td>
-                        <td class="text-center vert-align"><input type="number" min="1" max="100" [(ngModel)]="cartInvoice.cartItemQuantity" ng-required class="form-control form-control-inline" style="width: 52px!important;"></td>
-                        <td class="text-right vert-align">{{ cartInvoice.cartItemQuantity * cartInvoice.productsPrice | currency }}</td>
-                        <td class="text-center vert-align"><a ng-click="vm.removeFromCart($index, cartInvoice.cartId)" class="remove-item"><i class="icon-close"></i></a></td>
-                    </tr>
-                    <tr *ngIf="cart.length < 1">
-                        <td colspan="5">
-                            <h2 class="text-center">Your cart is empty.</h2>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Unit Cost</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-right">Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr *ngFor="let cartInvoice of cart">
+                            <td class="vert-align"><a routerLink="/{{cartInvoice.productsURL}}">{{cartInvoice.productsName}}</a></td>
+                            <td class="vert-align">{{ cartInvoice.productsPrice | currency }}</td>
+                            <td class="text-center vert-align"><input type="number" min="1" max="100" [(ngModel)]="cartInvoice.cartItemQuantity" ng-required class="form-control form-control-inline" style="width: 52px!important;"></td>
+                            <td class="text-right vert-align">{{ cartInvoice.cartItemQuantity * cartInvoice.productsPrice | currency }}</td>
+                            <td class="text-center vert-align"><a ng-click="vm.removeFromCart($index, cartInvoice.cartId)" class="remove-item"><i class="icon-close"></i></a></td>
+                        </tr>
+                        <tr *ngIf="cart.length < 1">
+                            <td colspan="5">
+                                <h2 class="text-center">Your cart is empty.</h2>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
 
                 <h4>INTERNATIONAL ORDERS</h4>
                 <p>Shipping costs for international orders will be displayed at checkout.<br>
@@ -57,8 +59,8 @@
 
             </div>
 
-            <form class="form" role="form" ng-submit="vm.createOrdersRecord()">
                 <div class="col-sm-4 "  ng-if="total() > 0">
+                    <form class="form-group" ng-submit="vm.createOrdersRecord()">
                     <table class="table">
                         <thead>
                         <tr>
@@ -91,8 +93,8 @@
 
                     <!--<a ui-sref="checkout" class="btn btn-right">Checkout</a>-->
                     <button type="submit" class="btn btn-right">Complete my purchase</button>
+                    </form>
                 </div>
-            </form>
         </div>
 
         <div class="row">

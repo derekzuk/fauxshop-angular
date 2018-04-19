@@ -12,6 +12,8 @@ import { JhiEventManager } from 'ng-jhipster';
 export class CartComponent implements OnInit {
     cart: Cart[] = [];
     account: Account;
+    totalCartPrice = 0;
+    tax = 20;
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -44,8 +46,30 @@ export class CartComponent implements OnInit {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
                 this.cart = cartData;
+                this.total();
             });
         }
+    }
+
+    total() {
+        let totalCalculatedValue = 0;
+        this.cart.forEach(function(item) {
+            totalCalculatedValue += item.cartItemQuantity * item.productsPrice;
+        });
+        this.totalCartPrice = totalCalculatedValue;
+        return this.totalCartPrice;
+    }
+
+    shipping() {
+        let shipping = 0;
+
+        if (this.total() < 100) {
+            shipping = 25;
+        } else {
+            shipping = 0;
+        }
+
+        return shipping;
     }
 
 }

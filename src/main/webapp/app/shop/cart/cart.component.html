@@ -4,10 +4,11 @@
             <div class="nav-header">
                 <a href="index.html" class="nav-brand">STELLA <span>SHOP</span></a>
                 <a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>
-                <div ng-switch="vm.isAuthenticated()">
-                    <a class="pull-right" ng-switch-when="true">You are logged in as {{vm.account.login}}</a>
+                <a class="nav-icon-outline cart pull-right" routerLink="/cart"><i class="icon-cart"></i><span class="badge">{{cart.length}}</span></a>
+                <div [ngSwitch]="isAuthenticated()">
+                    <a *ngIf="account" class="pull-right" ng-switch-when="true">You are logged in as {{account.login}}</a>
                 </div>
-                <a class="nav-icon-outline cart pull-right"><i class="icon-cart"></i><span class="badge">{{vm.cartInvoices.length}}</span></a>
+                <a class="nav-icon-outline hidden-xs cart pull-right" routerLink="/cart"><i class="icon-cart"></i><span class="badge">{{cart.length}}</span></a>
             </div>
         </div>
     </div>
@@ -20,7 +21,7 @@
         </div>
     </div>
 
-    <div class="container-fluid cart-list" ng-controller="CartController">
+    <div class="container-fluid cart-list">
         <div class="row">
             <div class="col-sm-8">
                 <table class="table">
@@ -34,14 +35,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="cartInvoice in vm.cartInvoices">
+                    <tr *ngFor="let cartInvoice of cart">
                         <td class="vert-align"><a routerLink="/{{cartInvoice.productsURL}}">{{cartInvoice.productsName}}</a></td>
                         <td class="vert-align">{{ cartInvoice.productsPrice | currency }}</td>
-                        <td class="text-center vert-align"><input type="number" min="1" max="100" ng-model="cartInvoice.cartItemQuantity" ng-required class="form-control form-control-inline" style="width: 52px!important;"></td>
+                        <td class="text-center vert-align"><input type="number" min="1" max="100" [(ngModel)]="cartInvoice.cartItemQuantity" ng-required class="form-control form-control-inline" style="width: 52px!important;"></td>
                         <td class="text-right vert-align">{{ cartInvoice.cartItemQuantity * cartInvoice.productsPrice | currency }}</td>
                         <td class="text-center vert-align"><a ng-click="vm.removeFromCart($index, cartInvoice.cartId)" class="remove-item"><i class="icon-close"></i></a></td>
                     </tr>
-                    <tr ng-if="total() == 0">
+                    <tr *ngIf="cart.length < 1">
                         <td colspan="5">
                             <h2 class="text-center">Your cart is empty.</h2>
                         </td>
@@ -57,7 +58,7 @@
             </div>
 
             <form class="form" role="form" ng-submit="vm.createOrdersRecord()">
-                <div class="col-sm-4 "  ng-if="vm.total() > 0">
+                <div class="col-sm-4 "  ng-if="total() > 0">
                     <table class="table">
                         <thead>
                         <tr>
@@ -68,22 +69,22 @@
                         <tr>
                             <td>Sub total:</td>
                             <td></td>
-                            <td class="text-right"><b>{{ vm.total() | currency }}</b></td>
+                            <td class="text-right"><b>{{ totalCartPrice | currency }}</b></td>
                         </tr>
                         <tr>
                             <td>Shipping cost:</td>
                             <td></td>
-                            <td class="text-right">{{ vm.shipping() | currency }}</td>
+                            <td class="text-right">{{ shipping() | currency }}</td>
                         </tr>
                         <tr>
                             <td>Tax:</td>
                             <td></td>
-                            <td class="text-right">{{ vm.tax | currency }}</td>
+                            <td class="text-right">{{ tax | currency }}</td>
                         </tr>
                         <tr>
                             <td>Total:</td>
                             <td></td>
-                            <td id="total" class="text-right">{{ vm.total() + vm.shipping() + vm.tax | currency }}</td>
+                            <td id="total" class="text-right">{{ totalCartPrice + shipping() + tax | currency }}</td>
                         </tr>
                         </tbody>
                     </table>

@@ -72,4 +72,21 @@ export class CartComponent implements OnInit {
         return shipping;
     }
 
+    removeFromCart(index, cartId) {
+        this.cartService.removeFromCart(cartId);
+        this.cart.splice(index, 1);
+    }
+
+    createOrdersRecord() {
+        this.cartService.updateCartQuantity(this.cart).subscribe();
+
+/**
+        CheckoutService.createOrdersRecord(vm.cartInvoices)
+            .then(function(result) {
+            $scope.createOrdersRecord = result;
+            $state.go('checkout');
+        })
+*/
+    }
+
 }

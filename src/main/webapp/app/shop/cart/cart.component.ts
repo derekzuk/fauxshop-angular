@@ -78,6 +78,7 @@ export class CartComponent implements OnInit {
     }
 
     createOrdersRecord() {
+        /** if this is successful, then we can run the createOrdersRecord() */
         this.cartService.updateCartQuantity(this.cart).subscribe();
 
 /**

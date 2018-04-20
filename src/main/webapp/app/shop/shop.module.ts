@@ -5,6 +5,7 @@ import { FauxshopangularSharedModule } from '../shared';
 import { cartState } from './';
 import { CartComponent } from './cart/cart.component';
 import { CartService } from '../shared/shop/cart.service';
+import { CheckoutService } from '../shared/shop/checkout.service';
 
 @NgModule({
     imports: [
@@ -17,7 +18,8 @@ import { CartService } from '../shared/shop/cart.service';
     entryComponents: [
     ],
     providers: [
-        CartService
+        CartService,
+        CheckoutService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

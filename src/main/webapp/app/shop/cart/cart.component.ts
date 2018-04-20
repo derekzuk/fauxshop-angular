@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart } from '../../shared/shop/cart.model';
 import { CartService } from '../../shared/shop/cart.service';
+import { CheckoutService } from '../../shared/shop/checkout.service';
 import { Account, Principal } from '../../shared';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -14,11 +15,13 @@ export class CartComponent implements OnInit {
     account: Account;
     totalCartPrice = 0;
     tax = 20;
+    createOrdersArray = [];
 
     constructor(private router: Router,
                 private principal: Principal,
                 private eventManager: JhiEventManager,
-                private cartService: CartService) {
+                private cartService: CartService,
+                private checkoutService: CheckoutService) {
     }
 
     ngOnInit() {
@@ -81,13 +84,10 @@ export class CartComponent implements OnInit {
         /** if this is successful, then we can run the createOrdersRecord() */
         this.cartService.updateCartQuantity(this.cart).subscribe();
 
-/**
-        CheckoutService.createOrdersRecord(vm.cartInvoices)
-            .then(function(result) {
-            $scope.createOrdersRecord = result;
-            $state.go('checkout');
-        })
-*/
+        this.checkoutService.createOrdersRecord(this.cart).subscribe((results) => {
+            this.createOrdersArray = results;
+        });
+/**            $state.go('checkout');               */
     }
 
 }

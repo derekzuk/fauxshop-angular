@@ -15,7 +15,7 @@ export class CheckoutService {
         this.checkoutData = new Checkout;
     }
 
-    createOrdersRecord(cart: Cart[]) {
+    createOrdersRecord(cart: Cart[]): Observable<any> {
         return this.http.post(`${this.resourceUrl}/createOrdersRecord`, cart, { observe: 'response' })
             .map((res: HttpResponse<any>) => {
                 this.checkoutData.createdOrdersRecordId = res.body.orderId;

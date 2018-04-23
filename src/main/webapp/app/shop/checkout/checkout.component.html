@@ -1,0 +1,179 @@
+<div id="wrap">
+    <div id="main-nav" class="">
+        <div class="container-fluid">
+            <div class="nav-header">
+                <a href="index.html" class="nav-brand">STELLA <span>SHOP</span></a>
+                <a class="nav-icon pull-right visible-xs menu-link" href="#"><i class="icon-menu2"></i></a>
+                <div ng-switch="isAuthenticated()">
+                    <a class="pull-right" ng-switch-when="true">You are logged in as {{account.login}}</a>
+                </div>
+                <a class="nav-icon-outline cart pull-right" ui-sref="cart"><i class="icon-cart"></i><span class="badge">{{cart.length}}</span></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid title">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Checkout / Step 1 of 2</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid cart-list">
+        <div class="row">
+            <form class="form" role="form" ng-submit="goToCheckout2()">
+                <div class="col-sm-6">
+                    <h3 class="text-center">Delivery address</h3>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">First name</label>
+                                <input ng-model="firstName" name="firstName" placeholder="First Name" class="form-control" type="text" required>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="control-label">Last Name</label>
+                                <input ng-model="lastName" name="lastName" placeholder="Last Name" class="form-control" type="text" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Email</label>
+                        <input ng-model="email" name="email" placeholder="Email" class="form-control" type="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Address</label>
+                        <input ng-model="address1" name="address1" placeholder="Address" class="form-control" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Address2</label>
+                        <input ng-model="address2" name="address2" placeholder="Address2" class="form-control" type="text">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">City</label>
+                        <input ng-model="city" name="city" placeholder="City" class="form-control" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Postal/ZIP Code</label>
+                        <input ng-model="postcode" name="zip" placeholder="Postal/ZIP Code" class="form-control" type="text" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Country</label>
+                        <select ng-model="country" id="country" class="form-control" tabindex="9"><option value="USA">USA</option></select>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">State / Province</label>
+                        <select ng-model="state" name="state" placeholder="State / Province" class="form-control" required>
+                            <option value="AL">Alabama</option>
+                            <option value="AK">Alaska</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="AR">Arkansas</option>
+                            <option value="CA">California</option>
+                            <option value="CO">Colorado</option>
+                            <option value="CT">Connecticut</option>
+                            <option value="DE">Delaware</option>
+                            <option value="DC">District Of Columbia</option>
+                            <option value="FL">Florida</option>
+                            <option value="GA">Georgia</option>
+                            <option value="HI">Hawaii</option>
+                            <option value="ID">Idaho</option>
+                            <option value="IL">Illinois</option>
+                            <option value="IN">Indiana</option>
+                            <option value="IA">Iowa</option>
+                            <option value="KS">Kansas</option>
+                            <option value="KY">Kentucky</option>
+                            <option value="LA">Louisiana</option>
+                            <option value="ME">Maine</option>
+                            <option value="MD">Maryland</option>
+                            <option value="MA">Massachusetts</option>
+                            <option value="MI">Michigan</option>
+                            <option value="MN">Minnesota</option>
+                            <option value="MS">Mississippi</option>
+                            <option value="MO">Missouri</option>
+                            <option value="MT">Montana</option>
+                            <option value="NE">Nebraska</option>
+                            <option value="NV">Nevada</option>
+                            <option value="NH">New Hampshire</option>
+                            <option value="NJ">New Jersey</option>
+                            <option value="NM">New Mexico</option>
+                            <option value="NY">New York</option>
+                            <option value="NC">North Carolina</option>
+                            <option value="ND">North Dakota</option>
+                            <option value="OH">Ohio</option>
+                            <option value="OK">Oklahoma</option>
+                            <option value="OR">Oregon</option>
+                            <option value="PA">Pennsylvania</option>
+                            <option value="RI">Rhode Island</option>
+                            <option value="SC">South Carolina</option>
+                            <option value="SD">South Dakota</option>
+                            <option value="TN">Tennessee</option>
+                            <option value="TX">Texas</option>
+                            <option value="UT">Utah</option>
+                            <option value="VT">Vermont</option>
+                            <option value="VA">Virginia</option>
+                            <option value="WA">Washington</option>
+                            <option value="WV">West Virginia</option>
+                            <option value="WI">Wisconsin</option>
+                            <option value="WY">Wyoming</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Phone</label>
+                        <input ng-model="phone" name="phone" placeholder="Phone" class="form-control" type="text" required>
+                    </div>
+                </div>
+                <div class="col-sm-6 ">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th colspan="3" class="text-center">You're purchasing this…</th>
+                        </tr>
+                        </thead>
+
+                        <tr ng-repeat="cartInvoice in cart">
+                            <td class="vert-align">{{cartInvoice.productsName}}</td>
+                            <td class="vert-align">{{cartInvoice.cartItemQuantity}}x</td>
+                            <td class="vert-align text-right">{{cartInvoice.cartItemTotalPrice | currency }}</td>
+                        </tr>
+
+                        <tbody>
+                        <tr>
+                            <td class="vert-align"><b>Cart subtotal</b></td>
+                            <td class="vert-align"></td>
+                            <td class="vert-align text-right"><b>{{ total() | currency }}</b></td>
+                        </tr>
+                        <tr>
+                            <td class="vert-align">Shipping cost:</td>
+                            <td class="vert-align"></td>
+                            <td class="vert-align text-right">{{ shipping() | currency }}</td>
+                        </tr>
+                        <tr>
+                            <td class="vert-align">Tax:</td>
+                            <td class="vert-align"></td>
+                            <td class="vert-align text-right">{{ tax | currency }}</td>
+                        </tr>
+                        <tr>
+                            <td class="vert-align">Total:</td>
+                            <td class="vert-align"></td>
+                            <td class="vert-align text-right" id="total">{{ total() + shipping() + tax | currency }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <!--<a ui-sref="checkout2" class="btn btn-right">Continue to next step</a>-->
+                </div>
+                <button type="submit" class="btn btn-right">Continue to next step</button>
+            </form>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 text-center show-more">
+                <a href="index.html" class="btn btn-outline">Cancel and return to store</a>
+            </div>
+        </div>
+    </div>
+</div>

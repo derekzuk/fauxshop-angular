@@ -7,10 +7,10 @@ import { Account, Principal } from '../../shared';
 import { JhiEventManager } from 'ng-jhipster';
 
 @Component({
-  selector: 'jhi-cart',
-  templateUrl: './cart.component.html'
+  selector: 'jhi-checkout',
+  templateUrl: './checkout.component.html'
 })
-export class CartComponent implements OnInit {
+export class CheckoutComponent implements OnInit {
     cart: Cart[] = [];
     account: Account;
     totalCartPrice = 0;
@@ -87,7 +87,7 @@ export class CartComponent implements OnInit {
         this.checkoutService.createOrdersRecord(this.cart).subscribe((results) => {
             this.createOrdersArray = results;
         });
-        this.router.navigateByUrl('/checkout');
+/**            $state.go('checkout');               */
     }
 
 }

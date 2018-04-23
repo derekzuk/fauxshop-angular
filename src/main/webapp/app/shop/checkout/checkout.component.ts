@@ -24,6 +24,7 @@ export class CheckoutComponent implements OnInit {
                 private eventManager: JhiEventManager,
                 private cartService: CartService,
                 private checkoutService: CheckoutService) {
+        this.checkoutData = new Checkout;
     }
 
     ngOnInit() {

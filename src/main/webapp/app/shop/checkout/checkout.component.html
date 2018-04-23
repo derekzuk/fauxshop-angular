@@ -23,52 +23,51 @@
 
     <div class="container-fluid cart-list">
         <div class="row">
-            <form class="form" role="form" (ngSubmit)="goToCheckout2()">
+            <form #f="ngForm" (ngSubmit)="goToCheckout2()">
                 <div class="col-sm-6">
                     <h3 class="text-center">Delivery address</h3>
                     <div class="row">
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">First name</label>
-                                <input [(ngModel)]="firstName" name="firstName" placeholder="First Name" class="form-control" type="text" required>
+                                <input [(ngModel)]="checkoutData.firstName" name="firstName" placeholder="First Name" class="form-control" type="text" required>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label class="control-label">Last Name</label>
-                                <input [(ngModel)]="lastName" name="lastName" placeholder="Last Name" class="form-control" type="text" required>
+                                <input [(ngModel)]="checkoutData.lastName" name="lastName" placeholder="Last Name" class="form-control" type="text" required>
                             </div>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label class="control-label">Email</label>
-                        <input [(ngModel)]="email" name="email" placeholder="Email" class="form-control" type="email" required>
+                        <input [(ngModel)]="checkoutData.email" name="email" placeholder="Email" class="form-control" type="email" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Address</label>
-                        <input [(ngModel)]="address1" name="address1" placeholder="Address" class="form-control" type="text" required>
+                        <input [(ngModel)]="checkoutData.address1" name="address1" placeholder="Address" class="form-control" type="text" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Address2</label>
-                        <input [(ngModel)]="address2" name="address2" placeholder="Address2" class="form-control" type="text">
+                        <input [(ngModel)]="checkoutData.address2" name="address2" placeholder="Address2" class="form-control" type="text">
                     </div>
                     <div class="form-group">
                         <label class="control-label">City</label>
-                        <input [(ngModel)]="city" name="city" placeholder="City" class="form-control" type="text" required>
+                        <input [(ngModel)]="checkoutData.city" name="city" placeholder="City" class="form-control" type="text" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Postal/ZIP Code</label>
-                        <input [(ngModel)]="postcode" name="zip" placeholder="Postal/ZIP Code" class="form-control" type="text" required>
+                        <input [(ngModel)]="checkoutData.postCode" name="zip" placeholder="Postal/ZIP Code" class="form-control" type="text" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Country</label>
-                        <select [(ngModel)]="country" id="country" class="form-control" tabindex="9"><option value="USA">USA</option></select>
-
+                        <select [(ngModel)]="checkoutData.country" name="country" class="form-control" tabindex="9"><option value="USA">USA</option></select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">State / Province</label>
-                        <select [(ngModel)]="state" name="state" placeholder="State / Province" class="form-control" required>
+                        <select [(ngModel)]="checkoutData.state" name="state" placeholder="State / Province" class="form-control" required>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
                             <option value="AZ">Arizona</option>
@@ -124,7 +123,7 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">Phone</label>
-                        <input [(ngModel)]="phone" name="phone" placeholder="Phone" class="form-control" type="text" required>
+                        <input [(ngModel)]="checkoutData.phone" name="phone" placeholder="Phone" class="form-control" type="text" required>
                     </div>
                 </div>
                 <div class="col-sm-6 ">

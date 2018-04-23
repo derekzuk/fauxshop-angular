@@ -23,4 +23,8 @@ export class CheckoutService {
                 console.log(this.checkoutData);
             }).catch((error: Response) => Observable.throw(error));
     }
+
+    loadCheckoutData() {
+        return this.checkoutData;
+    }
 }

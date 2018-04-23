@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart } from '../../shared/shop/cart.model';
+import { Checkout } from '../../shared/shop/checkout.model';
 import { CartService } from '../../shared/shop/cart.service';
 import { CheckoutService } from '../../shared/shop/checkout.service';
 import { Account, Principal } from '../../shared';
@@ -16,6 +17,7 @@ export class CheckoutComponent implements OnInit {
     totalCartPrice = 0;
     tax = 20;
     createOrdersArray = [];
+    checkoutData: Checkout;
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -28,21 +30,13 @@ export class CheckoutComponent implements OnInit {
         this.principal.identity().then((account) => {
             this.account = account;
             this.updateCart();
+            this.checkoutData = this.loadCheckoutData();
         });
         this.registerAuthenticationSuccess();
     }
 
     isAuthenticated() {
         return this.principal.isAuthenticated();
-    }
-
-    registerAuthenticationSuccess() {
-        this.eventManager.subscribe('authenticationSuccess', (message) => {
-            this.principal.identity().then((account) => {
-                this.account = account;
-                this.updateCart();
-            });
-        });
     }
 
     updateCart() {
@@ -75,19 +69,17 @@ export class CheckoutComponent implements OnInit {
         return shipping;
     }
 
-    removeFromCart(index, cartId) {
-        this.cartService.removeFromCart(cartId);
-        this.cart.splice(index, 1);
+    registerAuthenticationSuccess() {
+        this.eventManager.subscribe('authenticationSuccess', (message) => {
+            this.principal.identity().then((account) => {
+                this.account = account;
+                this.updateCart();
+            });
+        });
     }
 
-    createOrdersRecord() {
-        /** if this is successful, then we can run the createOrdersRecord() */
-        this.cartService.updateCartQuantity(this.cart).subscribe();
-
-        this.checkoutService.createOrdersRecord(this.cart).subscribe((results) => {
-            this.createOrdersArray = results;
-        });
-/**            $state.go('checkout');               */
+    loadCheckoutData() {
+        return this.checkoutService.loadCheckoutData();
     }
 
 }

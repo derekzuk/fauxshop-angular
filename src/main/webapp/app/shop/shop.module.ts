@@ -7,6 +7,7 @@ import { CartComponent } from './cart/cart.component';
 import { CartService } from '../shared/shop/cart.service';
 import { CheckoutService } from '../shared/shop/checkout.service';
 import { CheckoutComponent } from './checkout/checkout.component';
+import { Checkout2Component } from './checkout/checkout2.component';
 
 @NgModule({
     imports: [
@@ -16,6 +17,7 @@ import { CheckoutComponent } from './checkout/checkout.component';
     declarations: [
         CartComponent,
         CheckoutComponent,
+        Checkout2Component,
     ],
     entryComponents: [
     ],

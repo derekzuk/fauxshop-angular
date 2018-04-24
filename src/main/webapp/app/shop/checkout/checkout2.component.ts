@@ -8,10 +8,10 @@ import { Account, Principal } from '../../shared';
 import { JhiEventManager } from 'ng-jhipster';
 
 @Component({
-  selector: 'jhi-checkout',
-  templateUrl: './checkout.component.html'
+  selector: 'jhi-checkout2',
+  templateUrl: './checkout2.component.html'
 })
-export class CheckoutComponent implements OnInit {
+export class Checkout2Component implements OnInit {
     cart: Cart[] = [];
     account: Account;
     totalCartPrice = 0;
@@ -81,10 +81,6 @@ export class CheckoutComponent implements OnInit {
 
     loadCheckoutData() {
         return this.checkoutService.loadCheckoutData();
-    }
-
-    goToCheckout2() {
-        this.router.navigateByUrl('/checkout2');
     }
 
 }

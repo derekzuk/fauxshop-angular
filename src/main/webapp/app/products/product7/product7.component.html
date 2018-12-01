@@ -52,7 +52,7 @@
                         <li>Small: 6.5" diameter, 7" high</li>
                     </ul>
                 </div>
-                <form class="myform" role="form" ng-submit="vm.addToCart(7)">
+                <form class="myform" role="form" (ngSubmit)="addToCart(7)">
                     <div class="form-group clearfix">
                         <label class="control-label">Size</label>
                         <select class="form-control">

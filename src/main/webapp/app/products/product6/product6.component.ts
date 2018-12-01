@@ -57,4 +57,16 @@ export class Product6Component implements OnInit {
         }
     }
 
+    addToCart(productId) {
+        if (this.account != null) {
+            this.cartService.addToCart(this.account.id, productId, 1).subscribe((result) => {
+                this.router.navigateByUrl('/cart');
+            });
+        } else {
+            this.cartService.addToCart(1234567890, productId, 1).subscribe((result) => {
+                this.router.navigateByUrl('/cart');
+            });
+        }
+    }
+
 }

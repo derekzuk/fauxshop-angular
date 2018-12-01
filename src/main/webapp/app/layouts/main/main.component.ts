@@ -27,6 +27,7 @@ export class JhiMainComponent implements OnInit {
             if (event instanceof NavigationEnd) {
                 this.titleService.setTitle(this.getPageTitle(this.router.routerState.snapshot.root));
             }
+            window.scrollTo(0, 0);
         });
     }
 }

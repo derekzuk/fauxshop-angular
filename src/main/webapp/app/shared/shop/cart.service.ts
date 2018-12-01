@@ -29,4 +29,12 @@ export class CartService {
     updateCartQuantity(cart: Cart[]): Observable<any> {
         return this.http.post(`${this.resourceUrl}/updateCartQuantity`, cart, {observe: 'response'});
     }
+
+    addToCart(id: number, productId: number, productQuantity: number): Observable<any> {
+        return this.http.post(`${this.resourceUrl}/${id}/${productId}/${productQuantity}`, { observe: 'response' })
+            .map((res: HttpResponse<any>) => {
+                console.log(res);
+                return res.body;
+            }).catch((error: Response) => Observable.throw(error.json()));
+    }
 }

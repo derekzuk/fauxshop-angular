@@ -16,6 +16,7 @@ export class Product3Component implements OnInit {
     product = new Product;
     cart: Cart[] = [];
     account: Account;
+    totalCartQuantity: number;
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -53,8 +54,17 @@ export class Product3Component implements OnInit {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
                 this.cart = cartData;
+                this.getTotalCartQuantity(cartData);
             });
         }
+    }
+
+    getTotalCartQuantity(cartData) {
+        let totalQuantity = 0;
+        for (const cartRecord of cartData) {
+            totalQuantity += cartRecord.cartItemQuantity;
+        }
+        this.totalCartQuantity = totalQuantity;
     }
 
     addToCart(productId) {

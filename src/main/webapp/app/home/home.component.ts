@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
     cart: Cart[] = [];
+    totalCartQuantity: number;
 
     constructor(
         private principal: Principal,
@@ -51,8 +52,17 @@ export class HomeComponent implements OnInit {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
                 this.cart = cartData;
+                this.getTotalCartQuantity(cartData);
             });
         }
+    }
+
+    getTotalCartQuantity(cartData) {
+        let totalQuantity = 0;
+        for (const cartRecord of cartData) {
+            totalQuantity += cartRecord.cartItemQuantity;
+        }
+        this.totalCartQuantity = totalQuantity;
     }
 
     login() {

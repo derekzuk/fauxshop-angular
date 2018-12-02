@@ -11,8 +11,8 @@ export class CartService {
     constructor(private http: HttpClient) {
     }
 
-    getCartByUserId(userId: number): Observable<any> {
-        return this.http.get<any[]>(`${this.resourceUrl}/${userId}`, { observe: 'response' })
+    getCartByUserId(userId: number): Observable<Cart[]> {
+        return this.http.get<Cart[]>(`${this.resourceUrl}/${userId}`, { observe: 'response' })
             .map((res: HttpResponse<any>) => {
                 return res.body;
             }).catch((error: Response) => Observable.throw(error.json()));

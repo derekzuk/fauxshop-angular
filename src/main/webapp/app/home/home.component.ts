@@ -4,6 +4,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { Cart } from '../shared/shop/cart.model';
 import { CartService } from '../shared/shop/cart.service';
 import { Account, LoginModalService, Principal } from '../shared';
+import { UUIDService } from '../shared/uuid/uuid.service';
 
 @Component({
     selector: 'jhi-home',
@@ -18,12 +19,14 @@ export class HomeComponent implements OnInit {
     modalRef: NgbModalRef;
     cart: Cart[] = [];
     totalCartQuantity: number;
+    uuid: number;
 
     constructor(
         private principal: Principal,
         private cartService: CartService,
         private loginModalService: LoginModalService,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private uuidService: UUIDService
     ) {
     }
 
@@ -33,6 +36,8 @@ export class HomeComponent implements OnInit {
             this.updateCart();
         });
         this.registerAuthenticationSuccess();
+        this.uuid = this.uuidService.getUUID();
+        console.log(this.uuid);
     }
 
     registerAuthenticationSuccess() {

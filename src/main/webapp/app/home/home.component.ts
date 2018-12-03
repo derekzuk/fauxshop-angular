@@ -33,12 +33,7 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.principal.identity().then((account) => {
             this.account = account;
-
-            if (this.account != null) {
-                this.uuid = this.uuidService.getUUID(this.account.id);
-            } else {
-                this.uuid = this.uuidService.getUUID(2);
-            }
+            this.uuid = this.uuidService.getUUID(account);
             console.log(this.uuid);
             this.updateCart();
         });

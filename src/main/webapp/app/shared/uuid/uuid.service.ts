@@ -10,11 +10,10 @@ export class UUIDService {
     constructor(@Inject(SESSION_STORAGE) private storage: StorageService) {
     }
 
-    public getUUID(accountId): number {
-        console.log('accountId: ' + accountId);
-        // account.id == 2 is anonymoususer
-        if (accountId !== 2) {
-            this.uuid = accountId;
+    public getUUID(account): number {
+        console.log('account: ' + account);
+        if (account != null) {
+            this.uuid = account.id;
             this.storage.set(STORAGE_KEY, this.uuid);
         } else {
             const existingUUID: number = this.storage.get(STORAGE_KEY);

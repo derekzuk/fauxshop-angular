@@ -13,6 +13,7 @@ import { Product7Component } from './product7/product7.component';
 import { Product8Component } from './product8/product8.component';
 import { CartService } from '../shared/shop/cart.service';
 import { ProductService } from '../shared/shop/product.service';
+import { UUIDService } from '../shared/uuid/uuid.service';
 
 @NgModule({
     imports: [
@@ -33,7 +34,8 @@ import { ProductService } from '../shared/shop/product.service';
     ],
     providers: [
         CartService,
-        ProductService
+        ProductService,
+        UUIDService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

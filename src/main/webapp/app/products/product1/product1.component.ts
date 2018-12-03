@@ -6,6 +6,7 @@ import { Product } from '../../shared/shop/product.model';
 import { ProductService } from '../../shared/shop/product.service';
 import { Account, Principal } from '../../shared';
 import { JhiEventManager } from 'ng-jhipster';
+import { UUIDService } from '../../shared/uuid/uuid.service';
 
 @Component({
   selector: 'jhi-product1',
@@ -17,17 +18,20 @@ export class Product1Component implements OnInit {
     cart: Cart[] = [];
     account: Account;
     totalCartQuantity: number;
+    uuid: number;
 
     constructor(private router: Router,
                 private principal: Principal,
                 private eventManager: JhiEventManager,
                 private cartService: CartService,
-                private productService: ProductService) {
+                private productService: ProductService,
+                private uuidService: UUIDService) {
     }
 
     ngOnInit() {
         this.principal.identity().then((account) => {
             this.account = account;
+            this.uuid = this.uuidService.getUUID(account);
             this.updateCart();
         });
         this.registerAuthenticationSuccess();
@@ -56,6 +60,12 @@ export class Product1Component implements OnInit {
                 this.cart = cartData;
                 this.getTotalCartQuantity(cartData);
             });
+        } else {
+            console.log('updateCart() with this.uuid: ' + this.uuid);
+            this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
+                this.cart = cartData;
+                this.getTotalCartQuantity(cartData);
+            });
         }
     }
 
@@ -73,7 +83,7 @@ export class Product1Component implements OnInit {
                 this.router.navigateByUrl('/cart');
             });
         } else {
-            this.cartService.addToCart(1234567890, productId, 1).subscribe((result) => {
+            this.cartService.addToCart(this.uuid, productId, 1).subscribe((result) => {
                 this.router.navigateByUrl('/cart');
             });
         }

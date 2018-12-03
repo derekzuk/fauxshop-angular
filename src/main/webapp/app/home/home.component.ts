@@ -33,13 +33,14 @@ export class HomeComponent implements OnInit {
     ngOnInit() {
         this.principal.identity().then((account) => {
             this.account = account;
-            this.updateCart();
+
             if (this.account != null) {
                 this.uuid = this.uuidService.getUUID(this.account.id);
             } else {
-                this.uuid = this.uuidService.getUUID(null);
+                this.uuid = this.uuidService.getUUID(2);
             }
             console.log(this.uuid);
+            this.updateCart();
         });
         this.registerAuthenticationSuccess();
     }
@@ -60,6 +61,12 @@ export class HomeComponent implements OnInit {
     updateCart() {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
+                this.cart = cartData;
+                this.getTotalCartQuantity(cartData);
+            });
+        } else {
+            console.log('updateCart() with this.uuid: ' + this.uuid);
+            this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
                 this.cart = cartData;
                 this.getTotalCartQuantity(cartData);
             });

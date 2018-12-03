@@ -40,7 +40,7 @@ public class CartResource {
      * GET  /cart/{id} : return list of cart records for the given user id
      *
      * @param id the user id
-     * @return the ResponseEntity with status 200 (OK) and the list of Cart records in the body, or status 500 (Internal Server Error)
+     * @return the ResponseEntity with status 200 (OK) and the list of Cart records in the body
      */
     @GetMapping("/cart/{id}")
     @Timed
@@ -58,7 +58,7 @@ public class CartResource {
             }
             return new ResponseEntity<List<CartDTO>>(cartRecords, HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<List<CartDTO>>(cartRecords, HttpStatus.OK);
         }
     }
 

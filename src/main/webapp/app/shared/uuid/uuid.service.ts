@@ -11,7 +11,9 @@ export class UUIDService {
     }
 
     public getUUID(accountId): number {
-        if (accountId != null) {
+        console.log('accountId: ' + accountId);
+        // account.id == 2 is anonymoususer
+        if (accountId !== 2) {
             this.uuid = accountId;
             this.storage.set(STORAGE_KEY, this.uuid);
         } else {

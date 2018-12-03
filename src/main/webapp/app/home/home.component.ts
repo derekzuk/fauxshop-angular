@@ -34,10 +34,14 @@ export class HomeComponent implements OnInit {
         this.principal.identity().then((account) => {
             this.account = account;
             this.updateCart();
+            if (this.account != null) {
+                this.uuid = this.uuidService.getUUID(this.account.id);
+            } else {
+                this.uuid = this.uuidService.getUUID(null);
+            }
+            console.log(this.uuid);
         });
         this.registerAuthenticationSuccess();
-        this.uuid = this.uuidService.getUUID();
-        console.log(this.uuid);
     }
 
     registerAuthenticationSuccess() {

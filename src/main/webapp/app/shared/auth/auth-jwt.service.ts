@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { SERVER_API_URL } from '../../app.constants';
 
+const STORAGE_KEY = 'uuidStorageKey';
+
 @Injectable()
 export class AuthServerProvider {
     constructor(
@@ -58,6 +60,7 @@ export class AuthServerProvider {
         return new Observable((observer) => {
             this.$localStorage.clear('authenticationToken');
             this.$sessionStorage.clear('authenticationToken');
+            this.$localStorage.clear(STORAGE_KEY);
             observer.complete();
         });
     }

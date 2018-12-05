@@ -1,5 +1,5 @@
 import { Inject, Injectable } from '@angular/core';
-import { SESSION_STORAGE, StorageService } from 'angular-webstorage-service';
+import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 
 const STORAGE_KEY = 'uuidStorageKey';
 
@@ -7,19 +7,20 @@ const STORAGE_KEY = 'uuidStorageKey';
 export class UUIDService {
     uuid: number;
 
-    constructor(@Inject(SESSION_STORAGE) private storage: StorageService) {
+    constructor(private $localStorage: LocalStorageService,
+                private $sessionStorage: SessionStorageService) {
     }
 
     public getUUID(account): number {
         console.log('account: ' + account);
         if (account != null) {
             this.uuid = account.id;
-            this.storage.set(STORAGE_KEY, this.uuid);
+            this.$localStorage.store(STORAGE_KEY, this.uuid);
         } else {
-            const existingUUID: number = this.storage.get(STORAGE_KEY);
+            const existingUUID: number = this.$localStorage.retrieve(STORAGE_KEY);
             if (existingUUID == null) {
                 this.uuid = Math.floor(Math.random() * 10000000000000000) + 1;
-                this.storage.set(STORAGE_KEY, this.uuid);
+                this.$localStorage.store(STORAGE_KEY, this.uuid);
             } else {
                 this.uuid = existingUUID;
             }

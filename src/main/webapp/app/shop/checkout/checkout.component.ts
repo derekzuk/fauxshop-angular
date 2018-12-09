@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { Cart } from '../../shared/shop/cart.model';
 import { Checkout } from '../../shared/shop/checkout.model';
@@ -11,7 +11,7 @@ import { JhiEventManager } from 'ng-jhipster';
   selector: 'jhi-checkout',
   templateUrl: './checkout.component.html'
 })
-export class CheckoutComponent implements OnInit {
+export class CheckoutComponent implements OnInit, OnChanges {
     cart: Cart[] = [];
     account: Account;
     totalCartPrice = 0;
@@ -34,6 +34,10 @@ export class CheckoutComponent implements OnInit {
             this.checkoutData = this.loadCheckoutData();
         });
         this.registerAuthenticationSuccess();
+    }
+
+    ngOnChanges() {
+        this.checkoutService.setCheckoutData(this.checkoutData);
     }
 
     isAuthenticated() {
@@ -84,7 +88,12 @@ export class CheckoutComponent implements OnInit {
     }
 
     goToCheckout2() {
+        this.createOrderDTO();
         this.router.navigateByUrl('/checkout2');
+    }
+
+    createOrderDTO() {
+        this.checkoutService.createOrderDTO(this.checkoutData);
     }
 
 }

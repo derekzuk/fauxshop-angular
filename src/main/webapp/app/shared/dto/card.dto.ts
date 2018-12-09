@@ -1,19 +1,19 @@
 export class CardDTO {
-        public ccOwner?: string;
-        public ccNumber?: string;
-        public expMonth?: string;
-        public expYear?: string;
-        public cvc?: string;
+        public owner?: string;
+        public number?: number;
+        public expMonth?: number;
+        public expYear?: number;
+        public cvc?: number;
 
     constructor(
-        ccOwner?: string,
-        ccNumber?: string,
-        expMonth?: string,
-        expYear?: string,
-        cvc?: string
+        owner?: string,
+        number?: number,
+        expMonth?: number,
+        expYear?: number,
+        cvc?: number
     ) {
-        this.ccOwner = ccOwner ? ccOwner : null;
-        this.ccNumber = ccNumber ? ccNumber : null;
+        this.owner = owner ? owner : null;
+        this.number = number ? number : null;
         this.expMonth = expMonth ? expMonth : null;
         this.expYear = expYear ? expYear : null;
         this.cvc = cvc ? cvc : null;

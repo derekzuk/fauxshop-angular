@@ -22,9 +22,9 @@
     </div>
 
     <div class="container-fluid cart-list">
+        <form class="form" role="form" (ngSubmit)="checkout($event)">
         <div class="row">
             <div class="col-sm-6">
-                <form action="checkout2.html" method="post" novalidate class="myform">
                     <h3 class="text-center">Payment Method</h3>
 
                     <div class="panel-group" id="accordion">
@@ -43,7 +43,7 @@
                                         <div class="col-sm-8 col-md-12">
                                             <div class="form-group">
                                                 <label class="control-label">Name</label>
-                                                <input ng-model="ccOwner" name="ccOwner" placeholder="Name on Card" class="form-control" type="text">
+                                                <input [(ngModel)]="cardDTO.owner" name="owner" placeholder="Name on Card" class="form-control" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -51,13 +51,13 @@
                                         <div class="col-sm-8 col-md-8">
                                             <div class="form-group">
                                                 <label class="control-label">Card Number</label>
-                                                <input ng-model="ccNumber" name="ccNumber" placeholder="Card number" class="form-control input-lg" type="text">
+                                                <input [(ngModel)]="cardDTO.number" name="number" placeholder="Card number" class="form-control input-lg" type="text">
                                             </div>
                                         </div>
                                         <div class="col-sm-4 col-md-4">
                                             <div class="form-group">
                                                 <label class="control-label">Code</label>
-                                                <input ng-model="ccCvc" name="Code" placeholder="Code" class="form-control input-lg" type="text" >
+                                                <input [(ngModel)]="cardDTO.cvc" name="cvc" placeholder="cvc" class="form-control input-lg" type="text" >
                                             </div>
                                         </div>
                                     </div>
@@ -66,7 +66,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">month</label>
                                                 <div class=" controls">
-                                                    <select ng-model="ccExpMonth" class="form-control">
+                                                    <select [(ngModel)]="cardDTO.expMonth" name="ccExpMonth" class="form-control">
                                                         <option value="" disabled selected>Expiration Month</option>
                                                         <option>1</option>
                                                         <option>2</option>
@@ -88,7 +88,7 @@
                                             <div class="form-group">
                                                 <label class="control-label">year</label>
                                                 <div class=" controls">
-                                                    <select ng-model="ccExpYear" class="form-control">
+                                                    <select [(ngModel)]="cardDTO.expYear" name="expYear" class="form-control">
                                                         <option value="" disabled selected>Expiration Year</option>
                                                         <option>2018</option>
                                                         <option>2019</option>
@@ -124,14 +124,10 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                </form>
-
             </div>
 
             <div class="col-sm-6 ">
-                <form class="form" role="form" (ngSubmit)="checkout($event)">
                 <table class="table">
                     <thead>
                     <tr>
@@ -171,10 +167,8 @@
 
                 <!--<a ng-click="vm.checkout($event)" class="btn btn-right">Complete my purchase</a>-->
                 <button type="submit" class="btn btn-right">Complete my purchase</button>
-                </form>
             </div>
-
-
+        </form>
         </div>
 
         <div class="row">

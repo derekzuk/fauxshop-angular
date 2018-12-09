@@ -102,7 +102,6 @@ export class Checkout2Component implements OnInit {
 
     checkout(event) {
         const cardInfo = this.cardDTO;
-        console.log(this.cardDTO);
         const orderDTO = this.finishCreatingOrderDTO();
         // Create the order
         this.checkoutService.createOrder(orderDTO)
@@ -136,7 +135,6 @@ export class Checkout2Component implements OnInit {
 
     createOrderDTOWithChargeId(chargeRecord) {
         this.orderDTO.stripeCardOwner = this.cardDTO.owner;
-        console.log(chargeRecord.data);
         this.orderDTO.stripeChargeId = chargeRecord.id;
         return this.orderDTO;
     }

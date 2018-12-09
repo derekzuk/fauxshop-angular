@@ -75,7 +75,6 @@ export class CartComponent implements OnInit {
     }
 
     removeFromCart(index, cartId) {
-        console.log("removing cartId: " + cartId);
         this.cartService.removeFromCart(cartId).subscribe(() => {
             console.log("Item removed from cart");
         })
@@ -86,7 +85,6 @@ export class CartComponent implements OnInit {
         /** if this is successful, then we can run the createOrdersRecord() */
         this.cartService.updateCartQuantity(this.cart).subscribe(() => {
             this.checkoutService.createOrdersRecord(this.cart).subscribe((results) => {
-                console.log('this.checkoutService.createOrdersRecord(): ' + results);
                 this.checkoutService.createOrderDTO(results);
             });
         });

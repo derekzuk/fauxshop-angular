@@ -9,6 +9,7 @@ import { UUIDService } from '../shared/uuid/uuid.service';
 import { CheckoutService } from '../shared/shop/checkout.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { Checkout2Component } from './checkout/checkout2.component';
+import { StripeService } from '../shared/shop/stripe.service';
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import { Checkout2Component } from './checkout/checkout2.component';
     providers: [
         CartService,
         CheckoutService,
+        StripeService,
         UUIDService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]

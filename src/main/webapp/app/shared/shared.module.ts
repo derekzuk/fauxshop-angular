@@ -1,6 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { StorageServiceModule } from 'angular-webstorage-service';
 
 import {
     FauxshopangularSharedLibsModule,
@@ -20,8 +19,7 @@ import {
 @NgModule({
     imports: [
         FauxshopangularSharedLibsModule,
-        FauxshopangularSharedCommonModule,
-        StorageServiceModule
+        FauxshopangularSharedCommonModule
     ],
     declarations: [
         JhiLoginModalComponent,

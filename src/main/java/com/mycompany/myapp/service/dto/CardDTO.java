@@ -7,6 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class CardDTO {
 
+    @JsonProperty("owner")
+    private String owner;
+
     @JsonProperty("number")
     private Long number;
 
@@ -18,6 +21,14 @@ public class CardDTO {
 
     @JsonProperty("cvc")
     private Long cvc;
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
 
     public Long getNumber() {
         return number;
@@ -54,7 +65,8 @@ public class CardDTO {
     @Override
     public String toString() {
         return "CardDTO{" +
-            "number=" + number +
+            "owner=" + owner +
+            ", number=" + number +
             ", expMonth=" + expMonth +
             ", expYear=" + expYear +
             ", cvc=" + cvc +

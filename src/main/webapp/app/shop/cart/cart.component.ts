@@ -15,7 +15,6 @@ export class CartComponent implements OnInit {
     account: Account;
     totalCartPrice = 0;
     tax = 20;
-    createOrdersArray = [];
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -85,7 +84,8 @@ export class CartComponent implements OnInit {
         this.cartService.updateCartQuantity(this.cart).subscribe();
 
         this.checkoutService.createOrdersRecord(this.cart).subscribe((results) => {
-            this.createOrdersArray = results;
+            console.log('this.checkoutService.createOrdersRecord(): ' + results);
+            this.checkoutService.createOrderDTO(results);
         });
         this.router.navigateByUrl('/checkout');
     }

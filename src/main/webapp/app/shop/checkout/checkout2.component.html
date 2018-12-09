@@ -90,7 +90,6 @@
                                                 <div class=" controls">
                                                     <select ng-model="ccExpYear" class="form-control">
                                                         <option value="" disabled selected>Expiration Year</option>
-                                                        <option>2017</option>
                                                         <option>2018</option>
                                                         <option>2019</option>
                                                         <option>2020</option>
@@ -131,63 +130,49 @@
 
             </div>
 
-            <form class="form" role="form" ng-submit="vm.checkout($event)">
-                <div class="col-sm-6 ">
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th colspan="3" class="text-center">You're purchasing this…</th>
-                        </tr>
-                        </thead>
+            <div class="col-sm-6 ">
+                <form class="form" role="form" (ngSubmit)="checkout($event)">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th colspan="3" class="text-center">You're purchasing this…</th>
+                    </tr>
+                    </thead>
 
-                        <tbody>
-                        <tr>
-                            <td class="vert-align">Tuscan urns</td>
-                            <td class="vert-align">1x</td>
-                            <td class="vert-align text-right">$14.00</td>
-                        </tr>
-                        <tr>
-                            <td class="vert-align">Bosphorus bowls</td>
-                            <td class="vert-align">2x</td>
-                            <td class="vert-align text-right">$28.00</td>
-                        </tr>
-                        <tr>
-                            <td class="vert-align">Langdon vases</td>
-                            <td class="vert-align">1x</td>
-                            <td class="vert-align text-right">$24.00</td>
-                        </tr>
-                        <tr>
-                            <td class="vert-align"><b>Cart subtotal</b></td>
-                            <td class="vert-align"></td>
-                            <td class="vert-align text-right"><b>$94.00</b></td>
-                        </tr>
-                        <tr>
-                            <td class="vert-align">Shipping cost:</td>
-                            <td class="vert-align"></td>
-                            <td class="vert-align text-right">$25.00</td>
-                        </tr>
-                        <tr>
-                            <td class="vert-align">Tax:</td>
-                            <td class="vert-align"></td>
-                            <td class="vert-align text-right">$20.00</td>
-                        </tr>
-                        <tr>
-                            <td class="vert-align">Coupon:</td>
-                            <td class="vert-align"></td>
-                            <td class="vert-align text-right">- $15.00</td>
-                        </tr>
-                        <tr>
-                            <td class="vert-align">Total:</td>
-                            <td class="vert-align"></td>
-                            <td class="vert-align text-right" id="total">$124.00</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <tbody>
+                    <tr *ngFor="let cartInvoice of cart">
+                        <td class="vert-align">{{cartInvoice.productsName}}</td>
+                        <td class="vert-align">{{cartInvoice.cartItemQuantity}}x</td>
+                        <td class="vert-align text-right">{{cartInvoice.cartItemTotalPrice | currency }}</td>
+                    </tr>
 
-                    <!--<a ng-click="vm.checkout($event)" class="btn btn-right">Complete my purchase</a>-->
-                    <button type="submit" class="btn btn-right">Complete my purchase</button>
-                </div>
-            </form>
+                    <tr>
+                        <td class="vert-align"><b>Cart subtotal</b></td>
+                        <td class="vert-align"></td>
+                        <td class="vert-align text-right"><b>{{total()}}</b></td>
+                    </tr>
+                    <tr>
+                        <td class="vert-align">Shipping cost:</td>
+                        <td class="vert-align"></td>
+                        <td class="vert-align text-right">{{shipping()}}</td>
+                    </tr>
+                    <tr>
+                        <td class="vert-align">Tax:</td>
+                        <td class="vert-align"></td>
+                        <td class="vert-align text-right">{{tax}}</td>
+                    </tr>
+                    <tr>
+                        <td class="vert-align">Total:</td>
+                        <td class="vert-align"></td>
+                        <td class="vert-align text-right" id="total">{{totalCharge()}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <!--<a ng-click="vm.checkout($event)" class="btn btn-right">Complete my purchase</a>-->
+                <button type="submit" class="btn btn-right">Complete my purchase</button>
+                </form>
+            </div>
 
 
         </div>

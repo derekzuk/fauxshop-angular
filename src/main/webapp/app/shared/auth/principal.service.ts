@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
 import { AccountService } from './account.service';
+import { UUIDService } from '../uuid/uuid.service';
 
 @Injectable()
 export class Principal {
@@ -10,7 +11,8 @@ export class Principal {
     private authenticationState = new Subject<any>();
 
     constructor(
-        private account: AccountService
+        private account: AccountService,
+        private uuidService: UUIDService
     ) {}
 
     authenticate(identity) {
@@ -66,6 +68,7 @@ export class Principal {
             if (account) {
                 this.userIdentity = account;
                 this.authenticated = true;
+                this.uuidService.getUUID(account);
             } else {
                 this.userIdentity = null;
                 this.authenticated = false;

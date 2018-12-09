@@ -5,6 +5,7 @@ export class Checkout {
         public address1?: string;
         public address2?: string;
         public city?: string;
+        public state?: string;
         public postCode?: string;
         public phone?: string;
         public createdOrdersRecordId?: number;
@@ -16,6 +17,7 @@ export class Checkout {
         address1?: string,
         address2?: string,
         city?: string,
+        state?: string,
         postCode?: string,
         phone?: string,
         createdOrdersRecordId?: number
@@ -26,6 +28,7 @@ export class Checkout {
         this.address1 = address1 ? address1 : null;
         this.address2 = address2 ? address2 : null;
         this.city = city ? city : null;
+        this.state = state ? state : null;
         this.postCode = postCode ? postCode : null;
         this.phone = phone ? phone : null;
         this.createdOrdersRecordId = createdOrdersRecordId ? createdOrdersRecordId : null;

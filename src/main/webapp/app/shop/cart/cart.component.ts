@@ -75,19 +75,22 @@ export class CartComponent implements OnInit {
     }
 
     removeFromCart(index, cartId) {
-        this.cartService.removeFromCart(cartId);
+        console.log("removing cartId: " + cartId);
+        this.cartService.removeFromCart(cartId).subscribe(() => {
+            console.log("Item removed from cart");
+        })
         this.cart.splice(index, 1);
     }
 
     createOrdersRecord() {
         /** if this is successful, then we can run the createOrdersRecord() */
-        this.cartService.updateCartQuantity(this.cart).subscribe();
-
-        this.checkoutService.createOrdersRecord(this.cart).subscribe((results) => {
-            console.log('this.checkoutService.createOrdersRecord(): ' + results);
-            this.checkoutService.createOrderDTO(results);
+        this.cartService.updateCartQuantity(this.cart).subscribe(() => {
+            this.checkoutService.createOrdersRecord(this.cart).subscribe((results) => {
+                console.log('this.checkoutService.createOrdersRecord(): ' + results);
+                this.checkoutService.createOrderDTO(results);
+            });
         });
         this.router.navigateByUrl('/checkout');
-    }
+    }  
 
 }

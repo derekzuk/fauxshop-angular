@@ -108,14 +108,14 @@ public class CartResource {
     }
 
     /**
-     * POST  /cart/{cartId} : removes the given cart record
+     * POST  /cart/remove/{cartId} : removes the given cart record
      *
      * @param cartId
      * @return the ResponseEntity with status 200 (OK)
      */
-    @PostMapping("/cart/{cartId}")
+    @PostMapping("/cart/remove/{cartId}")
     @Timed
-    public ResponseEntity<Cart> removeFromCart(@PathVariable("cartId") Long cartId) {
+    public ResponseEntity removeFromCart(@PathVariable("cartId") Long cartId) {
         Cart cartRecord = cartService.findOneByCartId(cartId);
         cartService.remove(cartRecord);
         return new ResponseEntity<>(HttpStatus.OK);

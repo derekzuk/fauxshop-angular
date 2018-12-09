@@ -18,12 +18,8 @@ export class CartService {
             }).catch((error: Response) => Observable.throw(error.json()));
     }
 
-    removeFromCart(cartId: number): Observable<any> {
-        return this.http.post(`${this.resourceUrl}/${cartId}`, { observe: 'response' })
-            .map((res: HttpResponse<any>) => {
-                console.log(res);
-                return res.body;
-            }).catch((error: Response) => Observable.throw(error.json()));
+    removeFromCart(cartId: any): Observable<any> {
+        return this.http.post(`${this.resourceUrl}/remove/${cartId}`, { observe: 'response' });
     }
 
     updateCartQuantity(cart: Cart[]): Observable<any> {

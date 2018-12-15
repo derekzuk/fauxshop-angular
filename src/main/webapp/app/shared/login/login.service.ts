@@ -2,13 +2,15 @@ import { Injectable } from '@angular/core';
 
 import { Principal } from '../auth/principal.service';
 import { AuthServerProvider } from '../auth/auth-jwt.service';
+import { UUIDService } from '../uuid/uuid.service';
 
 @Injectable()
 export class LoginService {
 
     constructor(
         private principal: Principal,
-        private authServerProvider: AuthServerProvider
+        private authServerProvider: AuthServerProvider,
+        private uuidService: UUIDService
     ) {}
 
     login(credentials, callback?) {
@@ -35,5 +37,10 @@ export class LoginService {
     logout() {
         this.authServerProvider.logout().subscribe();
         this.principal.authenticate(null);
+    }
+
+    clickLogout() {
+        this.uuidService.clearUUID();
+        this.logout();
     }
 }

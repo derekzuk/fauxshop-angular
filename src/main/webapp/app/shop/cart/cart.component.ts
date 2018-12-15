@@ -76,8 +76,8 @@ export class CartComponent implements OnInit {
 
     removeFromCart(index, cartId) {
         this.cartService.removeFromCart(cartId).subscribe(() => {
-            console.log("Item removed from cart");
-        })
+            console.log('Item removed from cart');
+        });
         this.cart.splice(index, 1);
     }
 
@@ -89,6 +89,6 @@ export class CartComponent implements OnInit {
             });
         });
         this.router.navigateByUrl('/checkout');
-    }  
+    }
 
 }

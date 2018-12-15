@@ -41,6 +41,7 @@ export class Checkout2Component implements OnInit {
     ngOnInit() {
         this.principal.identity().then((account) => {
             this.account = account;
+            this.uuid = this.uuidService.getUUID(account);
             this.updateCart();
             this.checkoutData = this.loadCheckoutData();
             this.orderDTO = this.checkoutService.getOrderDTO();
@@ -55,6 +56,12 @@ export class Checkout2Component implements OnInit {
     updateCart() {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
+                this.cart = cartData;
+                this.total();
+            });
+        } else {
+            console.log('updateCart() with this.uuid: ' + this.uuid);
+            this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
                 this.cart = cartData;
                 this.total();
             });
@@ -123,10 +130,10 @@ export class Checkout2Component implements OnInit {
 
     finishCreatingOrderDTO() {
         let userId;
-        if (this.account.id != null) {
+        if (this.account !== null) {
             userId = this.account.id;
         } else {
-            userId = this.uuidService.getUUID(this.account);
+            userId = this.uuid;
         }
         this.orderDTO.id = userId;
         this.orderDTO.shippingCost = this.shipping();

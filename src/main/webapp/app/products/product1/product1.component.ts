@@ -78,7 +78,7 @@ export class Product1Component implements OnInit {
     }
 
     addToCart(productId) {
-        if (this.account != null) {
+        if (this.account !== null) {
             this.cartService.addToCart(this.account.id, productId, 1).subscribe((result) => {
                 this.router.navigateByUrl('/cart');
             });

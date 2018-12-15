@@ -99,6 +99,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/api/account/reset-password/init").permitAll()
             .antMatchers("/api/account/reset-password/finish").permitAll()
             .antMatchers("/api/cart/**").permitAll()
+            .antMatchers("/api/charge/**").permitAll() // this is pretty irresponsible.
+            .antMatchers("/api/updateChargeId").permitAll() // this is pretty irresponsible.
+            .antMatchers("/api/checkout").permitAll() // this is pretty irresponsible.
+            .antMatchers("/api/createOrdersRecord").permitAll() // this is pretty irresponsible.
             .antMatchers("/api/products/**").permitAll()
             .antMatchers("/api/profile-info").permitAll()
             .antMatchers("/api/**").authenticated()

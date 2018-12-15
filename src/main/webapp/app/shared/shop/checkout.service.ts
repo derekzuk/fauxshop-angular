@@ -35,6 +35,7 @@ export class CheckoutService {
     }
 
     createOrder(orderDTO): Observable<any> {
+        console.log('orderDTO: ' + orderDTO);
         return this.http.post(`${this.resourceUrl}/checkout`, orderDTO, { observe: 'response' })
         .map((res: HttpResponse<any>) => {
             console.log(res);
@@ -42,6 +43,7 @@ export class CheckoutService {
     }
 
     updateChargeId(orderDTO): Observable<any> {
+        console.log('orderDTO: ' + orderDTO);
         return this.http.post(`${this.resourceUrl}/updateChargeId`, orderDTO, { observe: 'response' })
         .map((res: HttpResponse<any>) => {
             console.log(res);

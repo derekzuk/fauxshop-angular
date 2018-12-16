@@ -12,7 +12,6 @@ import { UUIDService } from '../shared/uuid/uuid.service';
     styleUrls: [
         'home.scss'
     ]
-
 })
 export class HomeComponent implements OnInit {
     account: Account;

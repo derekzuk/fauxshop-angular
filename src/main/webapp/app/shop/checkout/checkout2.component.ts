@@ -10,6 +10,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { CardDTO } from '../../shared/dto/card.dto';
 import { OrderDTO } from '../../shared/dto/order.dto';
 import { UUIDService } from '../../shared/uuid/uuid.service';
+import * as brainblocks from 'brainblocks';
 
 @Component({
   selector: 'jhi-checkout2',
@@ -47,6 +48,27 @@ export class Checkout2Component implements OnInit {
             this.orderDTO = this.checkoutService.getOrderDTO();
         });
         this.registerAuthenticationSuccess();
+        this.loadBrainblocksButton();
+    }
+
+    loadBrainblocksButton() {
+        brainblocks.Button.render({
+
+            // Pass in payment options
+    
+            payment: {
+                destination: 'nano_164xaa1ojy6qmq9e8t94mz8izr4mkf1sojb6xrmstru5jsif48g5kegcqg7y',
+                currency:    'rai',
+                amount:      1000
+            },
+    
+            // Handle successful payments
+    
+            onPayment: function(data) {
+                console.log('Payment successful!', data.token);
+            }
+    
+        }, '#nano-button');
     }
 
     isAuthenticated() {

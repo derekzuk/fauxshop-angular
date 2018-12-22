@@ -710,6 +710,12 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
+beaver-logger@^3.0.11, beaver-logger@^3.0.17:
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/beaver-logger/-/beaver-logger-3.0.17.tgz#59d201ab9c7359e6250d10f3a72bf06dcc4c2866"
+  dependencies:
+    zalgo-promise "^1.0.26"
+
 beeper@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/beeper/-/beeper-1.1.1.tgz#e6d5ea8c5dad001304a70b22638447f69cb2f809"
@@ -839,6 +845,15 @@ braces@^2.3.0, braces@^2.3.1:
     snapdragon-node "^2.0.1"
     split-string "^3.0.2"
     to-regex "^3.0.1"
+
+brainblocks@^1.0.17:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/brainblocks/-/brainblocks-1.0.17.tgz#560d277ad1d34ba43686c7a3dd989d24f5ab427f"
+  dependencies:
+    beaver-logger "^3.0.11"
+    post-robot "^8.0.14"
+    xcomponent "^6.0.38"
+    zalgo-promise "^1.0.34"
 
 brorand@^1.0.1:
   version "1.1.0"
@@ -1698,6 +1713,18 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     ripemd160 "^2.0.0"
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
+
+cross-domain-safe-weakmap@^1.0.1, cross-domain-safe-weakmap@^1.0.22:
+  version "1.0.23"
+  resolved "https://registry.yarnpkg.com/cross-domain-safe-weakmap/-/cross-domain-safe-weakmap-1.0.23.tgz#48e662e7ed2dcb71b1652e75a8c3fac7840189c1"
+  dependencies:
+    cross-domain-utils "^2.0.0"
+
+cross-domain-utils@^2.0.0, cross-domain-utils@^2.0.16:
+  version "2.0.23"
+  resolved "https://registry.yarnpkg.com/cross-domain-utils/-/cross-domain-utils-2.0.23.tgz#b38b5c4e41f9026b2b73b0f1d75b2ca5955ca19a"
+  dependencies:
+    zalgo-promise "^1.0.11"
 
 cross-spawn@^3.0.0:
   version "3.0.1"
@@ -3627,6 +3654,10 @@ hawk@~6.0.2:
 he@1.1.x:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/he/-/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
+
+hi-base32@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/hi-base32/-/hi-base32-0.5.0.tgz#61329f76a31f31008533f1c36f2473e259d64571"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -6173,6 +6204,14 @@ portscanner@2.1.1:
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
+
+post-robot@^8.0.14, post-robot@^8.0.29:
+  version "8.0.29"
+  resolved "https://registry.yarnpkg.com/post-robot/-/post-robot-8.0.29.tgz#015847b2182e68cac56744519179410ec001004f"
+  dependencies:
+    cross-domain-safe-weakmap "^1.0.1"
+    cross-domain-utils "^2.0.0"
+    zalgo-promise "^1.0.3"
 
 postcss-calc@^5.2.0:
   version "5.3.1"
@@ -9006,6 +9045,17 @@ wtf-8@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wtf-8/-/wtf-8-1.0.0.tgz#392d8ba2d0f1c34d1ee2d630f15d0efb68e1048a"
 
+xcomponent@^6.0.38:
+  version "6.0.68"
+  resolved "https://registry.yarnpkg.com/xcomponent/-/xcomponent-6.0.68.tgz#1a3b7ae3bc64edb593723beae20e9891ec46ac18"
+  dependencies:
+    beaver-logger "^3.0.17"
+    cross-domain-safe-weakmap "^1.0.22"
+    cross-domain-utils "^2.0.16"
+    hi-base32 "^0.5.0"
+    post-robot "^8.0.29"
+    zalgo-promise "^1.0.34"
+
 xdg-basedir@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-2.0.0.tgz#edbc903cc385fc04523d966a335504b5504d1bd2"
@@ -9241,6 +9291,10 @@ yeoman-generator@2.0.1:
     text-table "^0.2.0"
     through2 "^2.0.0"
     yeoman-environment "^2.0.3"
+
+zalgo-promise@^1.0.11, zalgo-promise@^1.0.26, zalgo-promise@^1.0.3, zalgo-promise@^1.0.34:
+  version "1.0.34"
+  resolved "https://registry.yarnpkg.com/zalgo-promise/-/zalgo-promise-1.0.34.tgz#b31376b420e79f4380d2137c1ee0e06587261921"
 
 zone.js@0.8.19:
   version "0.8.19"

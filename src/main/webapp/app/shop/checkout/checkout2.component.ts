@@ -11,6 +11,7 @@ import { CardDTO } from '../../shared/dto/card.dto';
 import { OrderDTO } from '../../shared/dto/order.dto';
 import { UUIDService } from '../../shared/uuid/uuid.service';
 import * as brainblocks from 'brainblocks';
+require('bootstrap');
 
 @Component({
   selector: 'jhi-checkout2',

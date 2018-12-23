@@ -27,31 +27,32 @@
             <div class="col-sm-6">
                     <h3 class="text-center">Payment Method</h3>
 
-                    <div class="panel-group" id="accordion">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
+                    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="false">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingOne">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                        Cryptocurrency
+                                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                    Cryptocurrency
                                     </a>
                                 </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in">
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
                                 <div class="panel-body">
                                     <div id="nano-button"></div>
                                 </div>
+                                </div>
                             </div>
-
-                            <div class="panel-heading">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" role="tab" id="headingTwo">
                                 <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                        Credit Card
+                                    <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Credit Card
                                     </a>
                                 </h4>
-                            </div>
-                            <div id="collapseOne" class="panel-collapse collapse in">
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                                 <div class="panel-body">
-
+                                    
                                     <div class="row">
                                         <div class="col-sm-8 col-md-12">
                                             <div class="form-group">
@@ -122,22 +123,10 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default">
-                            <div id="collapseTwo" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    <div class="form-group">
-                                        <label class="control-label" for="contact-message">Message</label>
-                                        <div class="controls">
-                                            <textarea id="contact-message" name="comments" placeholder="Add Comments About Your Order" class="form-control input-lg requiredField" rows="5"></textarea>
-                                        </div>
-                                    </div>
+                                </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        <!-- </div> -->
             </div>
 
             <div class="col-sm-6 ">

@@ -129,7 +129,7 @@ export class Checkout2Component implements OnInit {
         return this.checkoutService.loadCheckoutData();
     }
 
-    checkout(event) {
+    checkout() {
         const cardInfo = this.cardDTO;
         const orderDTO = this.finishCreatingOrderDTO();
         // Create the order

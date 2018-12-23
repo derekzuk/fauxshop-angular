@@ -36,7 +36,7 @@ export class ConfirmationComponent implements OnInit {
                 private stripeService: StripeService,
                 private uuidService: UUIDService) {
         this.checkoutData = new Checkout;
-        this.cardDTO = new CardDTO;         
+        this.cardDTO = new CardDTO;
     }
 
     ngOnInit() {

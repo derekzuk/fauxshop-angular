@@ -10,14 +10,13 @@ import { JhiEventManager } from 'ng-jhipster';
 import { CardDTO } from '../../shared/dto/card.dto';
 import { OrderDTO } from '../../shared/dto/order.dto';
 import { UUIDService } from '../../shared/uuid/uuid.service';
-import * as brainblocks from 'brainblocks';
 require('bootstrap');
 
 @Component({
-  selector: 'jhi-checkout2',
-  templateUrl: './checkout2.component.html'
+  selector: 'jhi-confirmation',
+  templateUrl: './confirmation.component.html'
 })
-export class Checkout2Component implements OnInit {
+export class ConfirmationComponent implements OnInit {
     account: Account;
     cardDTO: CardDTO;
     orderDTO: OrderDTO;
@@ -40,28 +39,7 @@ export class Checkout2Component implements OnInit {
         this.cardDTO = new CardDTO;         
     }
 
-    brainblocksRender() {
-        brainblocks.Button.render({
-
-            // Pass in payment options
-        
-            payment: {
-                destination: 'nano_164xaa1ojy6qmq9e8t94mz8izr4mkf1sojb6xrmstru5jsif48g5kegcqg7y',
-                currency:    'rai',
-                amount:      1000
-            },
-        
-            // Handle successful payments
-        
-            onPayment: function(data) {
-                console.log('Payment successful!', data.token);
-            }
-        
-        }, '#nano-button');       
-    }
-
     ngOnInit() {
-        this.brainblocksRender();
         this.principal.identity().then((account) => {
             this.account = account;
             this.uuid = this.uuidService.getUUID(account);
@@ -145,7 +123,7 @@ export class Checkout2Component implements OnInit {
             .subscribe(() => {
                 // Then navigate back to the home page
                 // TODO: save data to display on confirmation screen
-                this.router.navigateByUrl('/confirmation');
+                this.router.navigateByUrl('/');
             });
             });
             });

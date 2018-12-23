@@ -9,6 +9,7 @@ import { UUIDService } from '../shared/uuid/uuid.service';
 import { CheckoutService } from '../shared/shop/checkout.service';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { Checkout2Component } from './checkout/checkout2.component';
+import { ConfirmationComponent } from './confirmation/confirmation.component';
 import { StripeService } from '../shared/shop/stripe.service';
 
 @NgModule({
@@ -20,6 +21,7 @@ import { StripeService } from '../shared/shop/stripe.service';
         CartComponent,
         CheckoutComponent,
         Checkout2Component,
+        ConfirmationComponent,
     ],
     entryComponents: [
     ],

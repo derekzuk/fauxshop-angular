@@ -26,9 +26,9 @@ export class ConfirmationComponent implements OnInit {
     createOrdersArray = [];
     shippingPrice = 0;
     tax = 20;
-    totalCartPrice = 0;
+    totalOrderPrice = 0;
     uuid: number;
-    ordersProducts: OrdersProducts;
+    ordersProducts: OrdersProducts[];
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -59,24 +59,22 @@ export class ConfirmationComponent implements OnInit {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
                 this.cart = cartData;
-                this.total();
             });
         } else {
             console.log('updateCart() with this.uuid: ' + this.uuid);
             this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
                 this.cart = cartData;
-                this.total();
             });
         }
     }
 
     total() {
         let totalCalculatedValue = 0;
-        this.cart.forEach(function(item) {
-            totalCalculatedValue += item.cartItemQuantity * item.productsPrice;
+        this.ordersProducts.forEach(function(item) {
+            totalCalculatedValue += item.productsPrice * item.productsQuantity;
         });
-        this.totalCartPrice = totalCalculatedValue;
-        return this.totalCartPrice;
+        this.totalOrderPrice = totalCalculatedValue;
+        return this.totalOrderPrice;
     }
 
     shipping() {
@@ -93,7 +91,7 @@ export class ConfirmationComponent implements OnInit {
     }
 
     totalCharge() {
-        return this.totalCartPrice + this.shippingPrice + this.tax;
+        return this.totalOrderPrice + this.shippingPrice + this.tax;
     }
 
     registerAuthenticationSuccess() {
@@ -151,6 +149,7 @@ export class ConfirmationComponent implements OnInit {
     populateOrdersProducts() {
         this.checkoutService.getOrdersProducts(this.checkoutService.getOrderDTO().orderId).subscribe((ordersProducts) => {
             this.ordersProducts = ordersProducts;
+            this.total();            
         });
     }    
 

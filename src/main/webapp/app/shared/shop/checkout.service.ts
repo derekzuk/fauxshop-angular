@@ -69,7 +69,8 @@ export class CheckoutService {
     }
 
     getOrdersProducts(orderId: number): Observable<any> {
-        return this.http.get<OrdersProducts>(`${this.resourceUrl}/confirmation/getOrdersProducts/${orderId}`, { observe: 'response' })
+        // return this.http.get<OrdersProducts>(`${this.resourceUrl}/confirmation/getOrdersProducts/${orderId}`, { observe: 'response' })
+        return this.http.get<OrdersProducts>(`${this.resourceUrl}/confirmation/getOrdersProducts/104`, { observe: 'response' })        
             .map((res: HttpResponse<any>) => {
                 return res.body;
             }).catch((error: Response) => Observable.throw(error.json()));

@@ -10,6 +10,7 @@ import { JhiEventManager } from 'ng-jhipster';
 import { CardDTO } from '../../shared/dto/card.dto';
 import { OrderDTO } from '../../shared/dto/order.dto';
 import { UUIDService } from '../../shared/uuid/uuid.service';
+import { OrdersProducts } from '../../shared/shop/ordersProducts.model';
 require('bootstrap');
 
 @Component({
@@ -27,6 +28,7 @@ export class ConfirmationComponent implements OnInit {
     tax = 20;
     totalCartPrice = 0;
     uuid: number;
+    ordersProducts: OrdersProducts;
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -35,8 +37,6 @@ export class ConfirmationComponent implements OnInit {
                 private checkoutService: CheckoutService,
                 private stripeService: StripeService,
                 private uuidService: UUIDService) {
-        this.checkoutData = new Checkout;
-        this.cardDTO = new CardDTO;
     }
 
     ngOnInit() {
@@ -46,6 +46,7 @@ export class ConfirmationComponent implements OnInit {
             this.updateCart();
             this.checkoutData = this.loadCheckoutData();
             this.orderDTO = this.checkoutService.getOrderDTO();
+            this.populateOrdersProducts();
         });
         this.registerAuthenticationSuccess();
     }
@@ -146,5 +147,11 @@ export class ConfirmationComponent implements OnInit {
         this.orderDTO.stripeChargeId = chargeRecord.id;
         return this.orderDTO;
     }
+
+    populateOrdersProducts() {
+        this.checkoutService.getOrdersProducts(this.checkoutService.getOrderDTO().orderId).subscribe((ordersProducts) => {
+            this.ordersProducts = ordersProducts;
+        });
+    }    
 
 }

@@ -5,6 +5,7 @@ import { SERVER_API_URL } from '../../app.constants';
 import { Cart } from './cart.model';
 import { Checkout } from './checkout.model';
 import { OrderDTO } from '../dto/order.dto';
+import { OrdersProducts } from './ordersProducts.model';
 
 @Injectable()
 export class CheckoutService {
@@ -65,5 +66,12 @@ export class CheckoutService {
 
     getOrderDTO(): OrderDTO {
         return this.orderDTO;
+    }
+
+    getOrdersProducts(orderId: number): Observable<any> {
+        return this.http.get<OrdersProducts>(`${this.resourceUrl}/confirmation/getOrdersProducts/${orderId}`, { observe: 'response' })
+            .map((res: HttpResponse<any>) => {
+                return res.body;
+            }).catch((error: Response) => Observable.throw(error.json()));
     }
 }

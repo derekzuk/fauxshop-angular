@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -43,5 +44,9 @@ public class CheckoutService {
 
     public void saveOrdersProducts(OrdersProducts ordersProductsRecordToPersist) {
         ordersProductsRepository.save(ordersProductsRecordToPersist);
+    }
+
+    public List<OrdersProducts> getOrdersProductsByOrderId(Long orderId) {
+        return ordersProductsRepository.findAllByOrderId(orderId);
     }
 }

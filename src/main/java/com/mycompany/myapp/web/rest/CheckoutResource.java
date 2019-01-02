@@ -1,11 +1,11 @@
 package com.mycompany.myapp.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.mycompany.myapp.domain.Cart;
-import com.mycompany.myapp.domain.Orders;
-import com.mycompany.myapp.domain.OrdersProducts;
+import com.mycompany.myapp.domain.*;
 import com.mycompany.myapp.service.CartService;
 import com.mycompany.myapp.service.CheckoutService;
+import com.mycompany.myapp.service.ProductsDescriptionService;
+import com.mycompany.myapp.service.ProductsService;
 import com.mycompany.myapp.service.dto.OrderDTO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,10 +25,15 @@ public class CheckoutResource {
 
     private final CheckoutService checkoutService;
     private final CartService cartService;
+    private final ProductsService productsService;
+    private final ProductsDescriptionService productsDescriptionService;
 
-    public CheckoutResource(CheckoutService checkoutService, CartService cartService) {
+    public CheckoutResource(CheckoutService checkoutService, CartService cartService, ProductsService productsService,
+                            ProductsDescriptionService productsDescriptionService) {
         this.checkoutService = checkoutService;
         this.cartService = cartService;
+        this.productsService = productsService;
+        this.productsDescriptionService = productsDescriptionService;
     }
 
     /**
@@ -45,7 +50,12 @@ public class CheckoutResource {
         Orders savedOrderRecord = checkoutService.save(orderRecordToPersist);
 
         for (Cart cartInvoice : cartInvoices) {
-            OrdersProducts ordersProductsRecordToPersist = new OrdersProducts(cartInvoice);
+            Products products = this.productsService
+                .getProductsByProductsId(cartInvoice.getProductsId()).get();
+            ProductsDescription productsDescription = this.productsDescriptionService
+                .getProductsDescriptionByProductsId(products.getProductsId()).get();
+            OrdersProducts ordersProductsRecordToPersist = new OrdersProducts(cartInvoice,
+                products.getProductsPrice(), productsDescription.getProductsName());
             ordersProductsRecordToPersist.setOrderId(savedOrderRecord.getOrderId());
             checkoutService.saveOrdersProducts(ordersProductsRecordToPersist);
         }

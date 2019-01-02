@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.mycompany.myapp.service.dto.OrderDTO;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -50,12 +51,14 @@ public class OrdersProducts extends AbstractAuditingEntity implements Serializab
     @Column(length = 4, nullable = false)
     private Integer productsQuantity;
 
-    public OrdersProducts() { }
+    public OrdersProducts() {}
 
-    public OrdersProducts(Cart cartInvoice) {
+    public OrdersProducts(Cart cartInvoice, BigDecimal productsPrice, String productsName) {
         this.productsId = cartInvoice.getProductsId();
         this.finalPrice = cartInvoice.getCartItemTotalPrice();
         this.productsQuantity = cartInvoice.getCartItemQuantity();
+        this.productsPrice = productsPrice;
+        this.productsName = productsName;
     }
 
     public Long getOrdersProductsId() {
@@ -129,11 +132,14 @@ public class OrdersProducts extends AbstractAuditingEntity implements Serializab
 
         OrdersProducts that = (OrdersProducts) o;
 
-        return ordersProductsId != null ? ordersProductsId.equals(that.ordersProductsId) : that.ordersProductsId == null;
+        if (!orderId.equals(that.orderId)) return false;
+        return productsId.equals(that.productsId);
     }
 
     @Override
     public int hashCode() {
-        return ordersProductsId != null ? ordersProductsId.hashCode() : 0;
+        int result = orderId != null ? orderId.hashCode() : 0;
+        result = 31 * result + (productsId != null ? productsId.hashCode() : 0);
+        return result;
     }
 }

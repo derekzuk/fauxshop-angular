@@ -1,6 +1,11 @@
 @import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700);
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css);
 
+/* for the login module */
+.modal-opened{
+  opacity: 1 !important;
+}
+
 /* There is conflict between the old and new bootstrap css
  There's probably a better way to resolve this, but put all of the css to resolve conflicts here for now */
 .modal.show .modal-dialog {

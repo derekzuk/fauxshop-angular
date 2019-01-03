@@ -149,8 +149,8 @@ export class ConfirmationComponent implements OnInit {
     populateOrdersProducts() {
         this.checkoutService.getOrdersProducts(this.checkoutService.getOrderDTO().orderId).subscribe((ordersProducts) => {
             this.ordersProducts = ordersProducts;
-            this.total();            
+            this.total();
         });
-    }    
+    }
 
 }

@@ -61,7 +61,6 @@ export class Product1Component implements OnInit {
                 this.getTotalCartQuantity(cartData);
             });
         } else {
-            console.log('updateCart() with this.uuid: ' + this.uuid);
             this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
                 this.cart = cartData;
                 this.getTotalCartQuantity(cartData);

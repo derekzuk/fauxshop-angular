@@ -60,23 +60,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <!-- foreach ($order->lineItems as $line) or some such thing here -->
                                 <tr *ngFor="let orderProduct of ordersProducts">
                                     <td>{{orderProduct.productsName}}</td>
                                     <td class="text-right">{{orderProduct.productsQuantity}}</td>
                                     <td class="text-right">{{orderProduct.productsPrice | currency}}</td>                                    
-                                <!-- </tr>
-                                <tr> -->
-                                    <td class="no-line"></td>
-                                    <td class="no-line"></td>
-                                    <td class="no-line text-right"><strong>Shipping</strong></td>
-                                    <td class="no-line text-right">incl.</td>
-                                <!-- </tr> -->
-                                <!-- <tr> -->
-                                    <td class="no-line"></td>
-                                    <td class="no-line"></td>
-                                    <td class="no-line text-right"><strong>Total</strong></td>
-                                    <td class="no-line text-right">{{totalOrderPrice | currency}}</td>
+                                </tr>
+                            </tbody>                                                     
+                        </table>
+                        <table class="table table-condensed">
+                            <tbody>
+                                <tr>
+                                    <td class="no-line text-right" style="border-top: none"><strong>Shipping: </strong>incl.</td>
+                                </tr>
+                                <tr>
+                                    <td class="no-line text-right" style="border-top: none"><strong>Total: </strong>{{totalOrderPrice | currency}}</td>
                                 </tr>
                             </tbody>
                         </table>

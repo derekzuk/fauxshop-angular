@@ -15,8 +15,8 @@ export class LoginModalService {
             return;
         }
         this.isOpen = true;
-        let options: NgbModalOptions = {windowClass: 'modal-opened'};        
-        const modalRef = this.modalService.open(JhiLoginModalComponent,options);
+        const options: NgbModalOptions = {windowClass: 'modal-opened'};
+        const modalRef = this.modalService.open(JhiLoginModalComponent, options);
         modalRef.result.then((result) => {
             console.log(result);
             this.isOpen = false;

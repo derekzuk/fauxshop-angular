@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
     totalCartPrice = 0;
     tax = 20;
     uuid: number;
+    totalCartQuantity: number;
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -53,12 +54,13 @@ export class CartComponent implements OnInit {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
                 this.cart = cartData;
                 this.total();
+                this.getTotalCartQuantity(cartData);
             });
         } else {
-            console.log('updateCart() with this.uuid: ' + this.uuid);
             this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
                 this.cart = cartData;
                 this.total();
+                this.getTotalCartQuantity(cartData);
             });
         }
     }
@@ -100,5 +102,13 @@ export class CartComponent implements OnInit {
         });
         this.router.navigateByUrl('/checkout');
     }
+
+    getTotalCartQuantity(cartData) {
+        let totalQuantity = 0;
+        for (const cartRecord of cartData) {
+            totalQuantity += cartRecord.cartItemQuantity;
+        }
+        this.totalCartQuantity = totalQuantity;
+    }    
 
 }

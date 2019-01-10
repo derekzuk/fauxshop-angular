@@ -13,13 +13,17 @@
                 <li *ngIf="isAuthenticated()"><a class="alert-link" (click)="logout()">Logout</a></li>
                 <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
                     <div class="dropdown show">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a style="height: auto" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">
                             Admin Panel
                         </a>                        
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <a class="dropdown-item" routerLink="audits">Audits</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <a class="dropdown-item" href="#">Something else here</a>
+                            <a class="dropdown-item" routerLink="jhi-configuration">Configuration</a>
+                            <a class="dropdown-item" routerLink="docs">Docs</a>
+                            <a class="dropdown-item" routerLink="jhi-health">Health</a>
+                            <a class="dropdown-item" routerLink="logs">Logs</a>
+                            <a class="dropdown-item" routerLink="jhi-metrics">Metrics</a>
+                            <a class="dropdown-item" routerLink="user-management">User Management</a>
                         </div>
                     </div>
                 </li>

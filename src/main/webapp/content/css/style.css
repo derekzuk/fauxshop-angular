@@ -6,6 +6,12 @@
   opacity: 1 !important;
 }
 
+/* for the admin console dropdown */
+.navbar-container {
+  position: relative;
+  z-index: 99;
+}
+
 /* There is conflict between the old and new bootstrap css
  There's probably a better way to resolve this, but put all of the css to resolve conflicts here for now */
 .modal.show .modal-dialog {
@@ -75,6 +81,8 @@ a:focus {
   margin-right: auto;
   margin-left: auto;
   max-width: 1200px;
+  position: relative;
+  z-index: 1;
 }
 .title h2 {
   margin-bottom: 20px;
@@ -465,6 +473,8 @@ input[type="checkbox"]:checked + span:before {
   margin: 15px 0 45px 0;
   position: relative;
   height: 48px;
+  position: relative;
+  z-index: 1;  
 }
 .nav-header h1 {
   margin: 5px 0 0 0;

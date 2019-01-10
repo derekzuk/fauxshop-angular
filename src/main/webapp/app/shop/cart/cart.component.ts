@@ -109,6 +109,6 @@ export class CartComponent implements OnInit {
             totalQuantity += cartRecord.cartItemQuantity;
         }
         this.totalCartQuantity = totalQuantity;
-    }    
+    }
 
 }

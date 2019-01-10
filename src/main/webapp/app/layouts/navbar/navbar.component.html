@@ -1,24 +1,29 @@
-<div class="container-fluid">
-    <div class="menu-wrapper">
-        <a href="#" class="close-menu visible-xs"><i class="icon-close"></i></a>
-        <h3 class="visible-xs">Navigation</h3>
-        <ul class="nav-list text-center effect">
-            <li><a routerLink="/" routerLinkActive="active">Shop</a></li>
-            <li><a routerLink="about" routerLinkActive="active">About</a></li>
-            <li><a routerLink="blog" routerLinkActive="active">Blog</a></li>
-            <li><a routerLink="contact" routerLinkActive="active">Contact</a></li>
-            <li><a routerLink="register" routerLinkActive="active">Register</a></li>
-            <li><a class="alert-link" (click)="login()">Login</a></li>
-            <li *ngIf="isAuthenticated()"><a class="alert-link" (click)="logout()">Logout</a></li>
-        </ul>
-        <div class="visible-xs mt-info">
-            <h3>Latest news</h3>
-            <ul>
-                <li><a href="blog-article.html">New collection</a></li>
-                <li><a href="blog-article.html">Home Sweet Home: Turn...</a></li>
-                <li><a href="blog-article.html">The Prisoner of Benda</a></li>
+<div class="navbar-container">
+    <div class="container-fluid">
+        <div class="menu-wrapper">
+            <a href="#" class="close-menu visible-xs"><i class="icon-close"></i></a>
+            <h3 class="visible-xs">Navigation</h3>
+            <ul class="nav-list text-center effect">
+                <li><a routerLink="/" routerLinkActive="active">Shop</a></li>
+                <li><a routerLink="about" routerLinkActive="active">About</a></li>
+                <li><a routerLink="blog" routerLinkActive="active">Blog</a></li>
+                <li><a routerLink="contact" routerLinkActive="active">Contact</a></li>
+                <li><a routerLink="register" routerLinkActive="active">Register</a></li>
+                <li><a class="alert-link" (click)="login()">Login</a></li>
+                <li *ngIf="isAuthenticated()"><a class="alert-link" (click)="logout()">Logout</a></li>
+                <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
+                    <div class="dropdown show">
+                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Admin Panel
+                        </a>                        
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <a class="dropdown-item" routerLink="audits">Audits</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item" href="#">Something else here</a>
+                        </div>
+                    </div>
+                </li>
             </ul>
-            <a href="http://demo.angelostudio.net" class="btn btn-outline-w">More Templates</a>
         </div>
     </div>
 </div>

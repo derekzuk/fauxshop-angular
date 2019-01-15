@@ -6,6 +6,7 @@ import { CartService } from '../../shared/shop/cart.service';
 import { CheckoutService } from '../../shared/shop/checkout.service';
 import { Account, Principal } from '../../shared';
 import { JhiEventManager } from 'ng-jhipster';
+import { UUIDService } from '../../shared/uuid/uuid.service';
 
 @Component({
   selector: 'jhi-checkout',
@@ -18,23 +19,27 @@ export class CheckoutComponent implements OnInit, OnChanges {
     tax = 20;
     createOrdersArray = [];
     checkoutData: Checkout;
+    shippingPrice = 0;
+    uuid: number;
 
     constructor(private router: Router,
                 private principal: Principal,
                 private eventManager: JhiEventManager,
                 private cartService: CartService,
-                private checkoutService: CheckoutService) {
+                private checkoutService: CheckoutService,
+                private uuidService: UUIDService) {
         this.checkoutData = new Checkout;
     }
 
     ngOnInit() {
         this.principal.identity().then((account) => {
             this.account = account;
+            this.uuid = this.uuidService.getUUID(account);
             this.updateCart();
             this.checkoutData = this.loadCheckoutData();
         });
         this.registerAuthenticationSuccess();
-    }
+    }    
 
     ngOnChanges() {
         this.checkoutService.setCheckoutData(this.checkoutData);
@@ -47,6 +52,12 @@ export class CheckoutComponent implements OnInit, OnChanges {
     updateCart() {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
+                this.cart = cartData;
+                this.total();
+            });
+        } else {
+            console.log('updateCart() with this.uuid: ' + this.uuid);
+            this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
                 this.cart = cartData;
                 this.total();
             });

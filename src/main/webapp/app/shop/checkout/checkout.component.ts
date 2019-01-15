@@ -21,6 +21,7 @@ export class CheckoutComponent implements OnInit, OnChanges {
     checkoutData: Checkout;
     shippingPrice = 0;
     uuid: number;
+    totalCartQuantity: number;
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -39,7 +40,7 @@ export class CheckoutComponent implements OnInit, OnChanges {
             this.checkoutData = this.loadCheckoutData();
         });
         this.registerAuthenticationSuccess();
-    }    
+    }
 
     ngOnChanges() {
         this.checkoutService.setCheckoutData(this.checkoutData);
@@ -53,12 +54,14 @@ export class CheckoutComponent implements OnInit, OnChanges {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
                 this.cart = cartData;
+                this.getTotalCartQuantity(cartData);
                 this.total();
             });
         } else {
             console.log('updateCart() with this.uuid: ' + this.uuid);
             this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
                 this.cart = cartData;
+                this.getTotalCartQuantity(cartData);
                 this.total();
             });
         }
@@ -105,6 +108,14 @@ export class CheckoutComponent implements OnInit, OnChanges {
 
     createOrderDTO() {
         this.checkoutService.createOrderDTO(this.checkoutData);
+    }
+
+    getTotalCartQuantity(cartData) {
+        let totalQuantity = 0;
+        for (const cartRecord of cartData) {
+            totalQuantity += cartRecord.cartItemQuantity;
+        }
+        this.totalCartQuantity = totalQuantity;
     }
 
 }

@@ -28,6 +28,7 @@ export class Checkout2Component implements OnInit {
     tax = 20;
     totalCartPrice = 0;
     uuid: number;
+    totalCartQuantity: number;
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -79,12 +80,14 @@ export class Checkout2Component implements OnInit {
         if (this.account != null) {
             this.cartService.getCartByUserId(this.account.id).subscribe((cartData) => {
                 this.cart = cartData;
+                this.getTotalCartQuantity(cartData);
                 this.total();
             });
         } else {
             console.log('updateCart() with this.uuid: ' + this.uuid);
             this.cartService.getCartByUserId(this.uuid).subscribe((cartData) => {
                 this.cart = cartData;
+                this.getTotalCartQuantity(cartData);
                 this.total();
             });
         }
@@ -166,6 +169,14 @@ export class Checkout2Component implements OnInit {
         this.orderDTO.stripeCardOwner = this.cardDTO.owner;
         this.orderDTO.stripeChargeId = chargeRecord.id;
         return this.orderDTO;
+    }
+
+    getTotalCartQuantity(cartData) {
+        let totalQuantity = 0;
+        for (const cartRecord of cartData) {
+            totalQuantity += cartRecord.cartItemQuantity;
+        }
+        this.totalCartQuantity = totalQuantity;
     }
 
 }

@@ -77,12 +77,14 @@ a:focus {
   border-top: 8px solid #9245dc;
 }
 .container-fluid {
-    font-family: 'Source Sans Pro',sans-serif;
+  font-family: 'Source Sans Pro',sans-serif;
   margin-right: auto;
   margin-left: auto;
   max-width: 1200px;
   position: relative;
   z-index: 1;
+  padding-left: 0px;
+  padding-right: 0px;
 }
 .title h2 {
   margin-bottom: 20px;
@@ -1109,6 +1111,7 @@ blockquote .small {
  *
  */
 .footer {
+  margin-top: 10px;
   background-color: #ebebeb;
   padding: 40px 0;
 }

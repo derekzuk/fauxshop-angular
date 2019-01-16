@@ -59,6 +59,8 @@ export class CheckoutService {
         this.orderDTO.deliveryName = checkoutData.firstName + ' ' + checkoutData.lastName;
         this.orderDTO.deliveryPostcode = checkoutData.postCode;
         this.orderDTO.deliveryState = checkoutData.state;
+        this.orderDTO.deliveryPhone = checkoutData.phone;
+        this.orderDTO.deliveryEmail = checkoutData.email;
         // this.orderDTO.id = ?
         this.orderDTO.orderId = checkoutData.createdOrdersRecordId;
         // this.orderDTO.shippingCost = ?
@@ -69,8 +71,7 @@ export class CheckoutService {
     }
 
     getOrdersProducts(orderId: number): Observable<any> {
-        // return this.http.get<OrdersProducts>(`${this.resourceUrl}/confirmation/getOrdersProducts/${orderId}`, { observe: 'response' })
-        return this.http.get<OrdersProducts>(`${this.resourceUrl}/confirmation/getOrdersProducts/111`, { observe: 'response' })
+        return this.http.get<OrdersProducts>(`${this.resourceUrl}/confirmation/getOrdersProducts/${orderId}`, { observe: 'response' })
             .map((res: HttpResponse<any>) => {
                 return res.body;
             }).catch((error: Response) => Observable.throw(error.json()));

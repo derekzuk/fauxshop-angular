@@ -6,6 +6,8 @@ export class OrderDTO {
         public deliveryName?: string;
         public deliveryPostcode?: string;
         public deliveryState?: string;
+        public deliveryPhone?: string;
+        public deliveryEmail?: string;
         public id?: number;
         public orderId?: number;
         public shippingCost?: number;
@@ -20,6 +22,8 @@ export class OrderDTO {
         deliveryName?: string,
         deliveryPostcode?: string,
         deliveryState?: string,
+        deliveryPhone?: string,
+        deliveryEmail?: string,
         id?: number,
         orderId?: number,
         shippingCost?: number,
@@ -33,6 +37,8 @@ export class OrderDTO {
         this.deliveryName = deliveryName ? deliveryName : null;
         this.deliveryPostcode = deliveryPostcode ? deliveryPostcode : null;
         this.deliveryState = deliveryState ? deliveryState : null;
+        this.deliveryPhone = deliveryPhone ? deliveryPhone : null;
+        this.deliveryEmail = deliveryEmail ? deliveryEmail : null;
         this.id = id ? id : null;
         this.orderId = orderId ? orderId : null;
         this.shippingCost = shippingCost ? shippingCost : null;

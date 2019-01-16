@@ -98,6 +98,14 @@ public class Orders extends AbstractAuditingEntity implements Serializable {
     @Column(name = "delivery_country", length = 32)
     private String deliveryCountry;
 
+    @Size(max = 32)
+    @Column(name = "delivery_phone", length = 32)
+    private String deliveryPhone;
+
+    @Size(max = 32)
+    @Column(name = "delivery_email", length = 32)
+    private String deliveryEmail;
+
     @Size(max = 12)
     @Column(name = "payment_method", length = 12)
     private String paymentMethod;
@@ -148,6 +156,8 @@ public class Orders extends AbstractAuditingEntity implements Serializable {
         this.deliveryName = orderDTO.getDeliveryName();
         this.deliveryPostcode = orderDTO.getDeliveryPostcode();
         this.deliveryState = orderDTO.getDeliveryState();
+        this.deliveryPhone = orderDTO.getDeliveryPhone();
+        this.deliveryEmail = orderDTO.getDeliveryEmail();
         this.id = orderDTO.getId();
         this.orderId = orderDTO.getOrderId();
         this.shippingCost = orderDTO.getShippingCost();
@@ -306,6 +316,14 @@ public class Orders extends AbstractAuditingEntity implements Serializable {
     public void setDeliveryCountry(String deliveryCountry) {
         this.deliveryCountry = deliveryCountry;
     }
+
+    public String getDeliveryPhone() { return deliveryPhone; }
+
+    public void setDeliveryPhone(String deliveryPhone) { this.deliveryPhone = deliveryPhone; }
+
+    public String getDeliveryEmail() { return deliveryEmail; }
+
+    public void setDeliveryEmail(String deliveryEmail) { this.deliveryEmail = deliveryEmail; }
 
     public String getPaymentMethod() {
         return paymentMethod;

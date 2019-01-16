@@ -30,6 +30,12 @@ public class OrderDTO {
     @JsonProperty("deliveryState")
     private String deliveryState;
 
+    @JsonProperty("deliveryPhone")
+    private String deliveryPhone;
+
+    @JsonProperty("deliveryEmail")
+    private String deliveryEmail;
+
     @JsonProperty("id")
     private Long id;
 
@@ -69,9 +75,11 @@ public class OrderDTO {
         return deliveryPostcode;
     }
 
-    public String getDeliveryState() {
-        return deliveryState;
-    }
+    public String getDeliveryState() { return deliveryState; }
+
+    public String getDeliveryPhone() { return deliveryPhone; }
+
+    public String getDeliveryEmail() { return deliveryEmail; }
 
     public Long getId() {
         return id;

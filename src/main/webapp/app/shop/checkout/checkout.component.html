@@ -55,31 +55,63 @@
 
                     <div class="form-group">
                         <label class="control-label">Email</label>
-                        <input [(ngModel)]="checkoutData.email" name="email" placeholder="Email" class="form-control" type="email" required>
+                        <input [(ngModel)]="checkoutData.email" #email=ngModel name="email" placeholder="Email" class="form-control" type="email" required>
                     </div>
+
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="email.errors && (email.dirty || email.touched)">
+                            A valid email address is required.
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="control-label">Address</label>
-                        <input [(ngModel)]="checkoutData.address1" name="address1" placeholder="Address" class="form-control" type="text" required>
+                        <input [(ngModel)]="checkoutData.address1" #address1=ngModel name="address1" placeholder="Address" class="form-control" type="text" required>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Address2</label>
                         <input [(ngModel)]="checkoutData.address2" name="address2" placeholder="Address2" class="form-control" type="text">
                     </div>
+
+                    <div *ngIf="address1.invalid && (address1.dirty || address1.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="address1.errors && (address1.dirty || address1.touched)">
+                            An address is required.
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="control-label">City</label>
-                        <input [(ngModel)]="checkoutData.city" name="city" placeholder="City" class="form-control" type="text" required>
+                        <input [(ngModel)]="checkoutData.city" #city=ngModel name="city" placeholder="City" class="form-control" type="text" required>
                     </div>
+
+                    <div *ngIf="city.invalid && (city.dirty || city.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="city.errors && (city.dirty || city.touched)">
+                            An address is required.
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="control-label">Postal/ZIP Code</label>
-                        <input [(ngModel)]="checkoutData.postCode" name="zip" placeholder="Postal/ZIP Code" class="form-control" type="text" required>
+                        <input [(ngModel)]="checkoutData.postCode" #zip=ngModel name="zip" placeholder="Postal/ZIP Code" class="form-control" type="text" required>
                     </div>
+
+                    <div *ngIf="zip.invalid && (zip.dirty || zip.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="zip.errors && (zip.dirty || zip.touched)">
+                            A zip code is required.
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="control-label">Country</label>
                         <select [(ngModel)]="checkoutData.country" name="country" class="form-control" tabindex="9"><option value="USA">USA</option></select>
                     </div>
                     <div class="form-group">
                         <label class="control-label">State / Province</label>
-                        <select [(ngModel)]="checkoutData.state" name="state" placeholder="State / Province" class="form-control" required>
+                        <select [(ngModel)]="checkoutData.state" #state=ngModel name="state" placeholder="State / Province" class="form-control" required>
                             <option value="AL">Alabama</option>
                             <option value="AK">Alaska</option>
                             <option value="AZ">Arizona</option>
@@ -133,10 +165,26 @@
                             <option value="WY">Wyoming</option>
                         </select>
                     </div>
+
+                    <div *ngIf="state.invalid && (state.dirty || state.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="state.errors && (state.dirty || state.touched)">
+                            A state is required.
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label class="control-label">Phone</label>
-                        <input [(ngModel)]="checkoutData.phone" name="phone" placeholder="Phone" class="form-control" type="text" required>
+                        <input [(ngModel)]="checkoutData.phone" #phone=ngModel name="phone" placeholder="Phone" class="form-control" type="text" required>
                     </div>
+
+                    <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="phone.errors && (phone.dirty || phone.touched)">
+                            A valid phone number is required.
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="col-sm-6 ">
                     <table class="table">

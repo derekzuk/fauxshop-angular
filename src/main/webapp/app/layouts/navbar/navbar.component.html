@@ -10,7 +10,7 @@
                 <li><a routerLink="contact" routerLinkActive="active">Contact</a></li>
                 <li><a routerLink="register" routerLinkActive="active">Register</a></li>
                 <li><a class="alert-link" (click)="login()">Login</a></li>
-                <li *ngIf="isAuthenticated()"><a class="alert-link" (click)="logout()">Logout</a></li>
+                <li *ngIf="isAuthenticated()"><a routerLink="/" class="alert-link" (click)="logout()">Logout</a></li>
                 <li *jhiHasAnyAuthority="'ROLE_ADMIN'">
                     <div class="dropdown show">
                         <a style="height: auto" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-expanded="false">

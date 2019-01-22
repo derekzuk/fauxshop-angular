@@ -1,4 +1,8 @@
-<div id="wrap">
+<div *ngIf="loading">
+    <h1>Processing Transaction...</h1>
+</div>
+
+<div *ngIf="!loading" id="wrap">
     <div id="main-nav" class="">
         <div class="container-fluid">
             <div class="nav-header">

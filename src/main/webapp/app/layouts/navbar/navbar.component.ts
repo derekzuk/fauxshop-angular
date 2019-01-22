@@ -53,6 +53,7 @@ export class NavbarComponent implements OnInit {
         this.collapseNavbar();
         this.loginService.clickLogout();
         window.location.reload();
+        this.router.navigateByUrl('/');
     }
 
     toggleNavbar() {

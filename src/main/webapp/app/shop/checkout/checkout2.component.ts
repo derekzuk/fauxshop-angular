@@ -11,6 +11,7 @@ import { CardDTO } from '../../shared/dto/card.dto';
 import { OrderDTO } from '../../shared/dto/order.dto';
 import { UUIDService } from '../../shared/uuid/uuid.service';
 import * as brainblocks from 'brainblocks';
+import { Observable } from 'rxjs';
 require('bootstrap');
 
 @Component({
@@ -29,6 +30,7 @@ export class Checkout2Component implements OnInit {
     totalCartPrice = 0;
     uuid: number;
     totalCartQuantity: number;
+    loading: boolean = false;
 
     constructor(private router: Router,
                 private principal: Principal,
@@ -61,6 +63,7 @@ export class Checkout2Component implements OnInit {
     }
 
     ngOnInit() {
+        this.loading = false;
         this.brainblocksRender();
         this.principal.identity().then((account) => {
             this.account = account;
@@ -133,6 +136,7 @@ export class Checkout2Component implements OnInit {
     }
 
     checkout() {
+        this.loading = true;
         const cardInfo = this.cardDTO;
         const orderDTO = this.finishCreatingOrderDTO();
         // Create the order
@@ -179,4 +183,7 @@ export class Checkout2Component implements OnInit {
         this.totalCartQuantity = totalQuantity;
     }
 
+    isLoading() {
+        return this.loading;
+    }
 }

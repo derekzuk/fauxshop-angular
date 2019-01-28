@@ -142,19 +142,22 @@ export class Checkout2Component implements OnInit {
         // Create the order
         this.checkoutService.createOrder(orderDTO)
             // Then charge using Stripe payment
-            .subscribe(() => {
+            .subscribe((res) => {
                 this.stripeService.charge(this.totalCharge() * 100, cardInfo)
             // Then update the status of the order to 'paid'
             .subscribe((res) => {
                 const orderDTOWithChargeId = this.createOrderDTOWithChargeId(res);
                 this.checkoutService.updateChargeId(orderDTOWithChargeId)
-            .subscribe(() => {
+            .subscribe((res) => {
                 // Then navigate back to the home page
                 // TODO: save data to display on confirmation screen
                 this.router.navigateByUrl('/confirmation');
-            });
-            });
-            });
+            }, (error) => {
+                this.router.navigateByUrl('/')});
+            }, (error) => {
+                this.router.navigateByUrl('/')});
+            }, (error) => {
+                this.router.navigateByUrl('/')});
     }
 
     finishCreatingOrderDTO() {

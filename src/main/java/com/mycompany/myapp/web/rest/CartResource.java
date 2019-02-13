@@ -56,10 +56,8 @@ public class CartResource {
                 cartRecord = new CartDTO(cartItem, product, productsDescription);
                 cartRecords.add(cartRecord);
             }
-            return new ResponseEntity<List<CartDTO>>(cartRecords, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<List<CartDTO>>(cartRecords, HttpStatus.OK);
         }
+        return new ResponseEntity<List<CartDTO>>(cartRecords, HttpStatus.OK);
     }
 
     /**

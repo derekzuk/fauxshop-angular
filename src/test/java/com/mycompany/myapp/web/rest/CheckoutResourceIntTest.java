@@ -218,7 +218,7 @@ public class CheckoutResourceIntTest {
         when(mockCheckoutService.save(orders)).thenReturn(orders);
 
         restCheckoutMockMvc.perform(
-            post("/api/checkout")
+            post("/api/updateChargeId")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
             .andExpect(status().isCreated());
@@ -231,7 +231,7 @@ public class CheckoutResourceIntTest {
         when(mockCheckoutService.getOrdersByOrdersId(orderDTO.getOrderId())).thenReturn(Optional.empty());
 
         restCheckoutMockMvc.perform(
-            post("/api/checkout")
+            post("/api/updateChargeId")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
             .andExpect(status().isInternalServerError());

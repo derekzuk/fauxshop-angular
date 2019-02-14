@@ -1,6 +1,5 @@
 package com.mycompany.myapp.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
 import com.mycompany.myapp.FauxshopangularApp;
 import com.mycompany.myapp.domain.*;
 import com.mycompany.myapp.repository.OrdersRepository;
@@ -17,15 +16,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -34,6 +28,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -210,5 +205,59 @@ public class CheckoutResourceIntTest {
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
             .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    public void testUpdateChargeId() throws Exception {
+        OrderDTO orderDTO = new OrderDTO();
+        orderDTO.setOrderId(1L);
+        Orders orders = new Orders();
+        Optional<Orders> optionalOrderRecord = Optional.ofNullable(orders);
+
+        when(mockCheckoutService.getOrdersByOrdersId(orderDTO.getOrderId())).thenReturn(optionalOrderRecord);
+        when(mockCheckoutService.save(orders)).thenReturn(orders);
+
+        restCheckoutMockMvc.perform(
+            post("/api/checkout")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
+            .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void testUpdateChargeIdOrderNotPresent() throws Exception {
+        OrderDTO orderDTO = new OrderDTO();
+
+        when(mockCheckoutService.getOrdersByOrdersId(orderDTO.getOrderId())).thenReturn(Optional.empty());
+
+        restCheckoutMockMvc.perform(
+            post("/api/checkout")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
+            .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    public void testGetOrdersProducts() throws Exception {
+        OrdersProducts ordersProducts = new OrdersProducts();
+        List<OrdersProducts> ordersProductsList = new ArrayList<>();
+        ordersProductsList.add(ordersProducts);
+
+        when(mockCheckoutService.getOrdersProductsByOrderId(1L)).thenReturn(ordersProductsList);
+
+        restCheckoutMockMvc.perform(get("/api/confirmation/getOrdersProducts/1"))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testGetOrdersProductsNoProducts() throws Exception {
+        OrdersProducts ordersProducts = new OrdersProducts();
+        List<OrdersProducts> ordersProductsList = new ArrayList<>();
+        ordersProductsList.add(ordersProducts);
+
+        when(mockCheckoutService.getOrdersProductsByOrderId(1L)).thenReturn(ordersProductsList);
+
+        restCheckoutMockMvc.perform(get("/api/confirmation/getOrdersProducts/1"))
+            .andExpect(status().isOk());
     }
 }

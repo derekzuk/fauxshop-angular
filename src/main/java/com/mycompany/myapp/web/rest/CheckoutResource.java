@@ -129,7 +129,7 @@ public class CheckoutResource {
     }
 
     /**
-     * GET  /confirmation/{orderId} : return list of OrdersProducts for a given orderId
+     * GET  /confirmation/getOrdersProducts/{orderId} : return list of OrdersProducts for a given orderId
      *
      * @param orderId
      * @return the ResponseEntity

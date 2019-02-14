@@ -29,6 +29,7 @@ import java.util.Optional;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
@@ -60,6 +61,9 @@ public class CartResourceIntTest {
 
     @Autowired
     private EntityManager em;
+
+    @Mock
+    private CartService mockCartService;
 
     @Mock
     private ProductsService mockProductsService;
@@ -134,5 +138,24 @@ public class CartResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$", hasSize(1)));
+    }
+
+    @Test
+    public void testAddToCart() throws Exception {
+        Products products = new Products();
+        products.setProductsId(1L);
+        Optional<Products> productsOptional = Optional.of(products);
+        when(mockProductsService.getProductsByProductsId(2L)).thenReturn(productsOptional);
+
+        restCartMockMvc.perform(post("/api/cart/1/2/3"))
+            .andExpect(status().isOk());
+    }
+
+    @Test
+    public void testAddToCartNoProducts() throws Exception {
+        when(mockProductsService.getProductsByProductsId(2L)).thenReturn(Optional.empty());
+
+        restCartMockMvc.perform(post("/api/cart/1/2/3"))
+            .andExpect(status().isBadRequest());
     }
 }

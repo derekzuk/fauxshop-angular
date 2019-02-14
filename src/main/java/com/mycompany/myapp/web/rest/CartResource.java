@@ -80,11 +80,7 @@ public class CartResource {
 
             Cart cartRecordToPersist = examineExistingCartRecords(cartRecord, cartItemQuantity);
 
-            try {
-                return new ResponseEntity<Cart>(cartService.save(cartRecordToPersist), HttpStatus.OK);
-            } catch( Exception e) {
-                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-            }
+            return new ResponseEntity<>(cartService.save(cartRecordToPersist), HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

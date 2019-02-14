@@ -1,5 +1,6 @@
 package com.mycompany.myapp.web.rest;
 
+import com.codahale.metrics.annotation.Timed;
 import com.mycompany.myapp.FauxshopangularApp;
 import com.mycompany.myapp.domain.*;
 import com.mycompany.myapp.repository.OrdersRepository;
@@ -7,6 +8,7 @@ import com.mycompany.myapp.service.CartService;
 import com.mycompany.myapp.service.CheckoutService;
 import com.mycompany.myapp.service.ProductsDescriptionService;
 import com.mycompany.myapp.service.ProductsService;
+import com.mycompany.myapp.service.dto.OrderDTO;
 import com.mycompany.myapp.web.rest.errors.ExceptionTranslator;
 import org.junit.Before;
 import org.junit.Test;
@@ -15,10 +17,15 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
@@ -148,5 +155,60 @@ public class CheckoutResourceIntTest {
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
                 .content(TestUtil.convertObjectToJsonBytes(cartList)))
             .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void testCreateOrdersRecordNoCartInvoices() throws Exception {
+        Cart cart = new Cart();
+        cart.setProductsId(1L);
+        cart.setId(0L);
+        List<Cart> cartList =  new ArrayList<>();
+
+        Orders orderRecordToPersist = new Orders();
+        orderRecordToPersist.setOrderStatus("initiated");
+        when(mockCheckoutService.save(orderRecordToPersist)).thenReturn(orderRecordToPersist);
+        when(mockProductsService.getProductsByProductsId(1L)).thenReturn(Optional.ofNullable(products));
+        when(mockProductsDescriptionService.getProductsDescriptionByProductsId(products.getProductsId()))
+            .thenReturn(Optional.ofNullable(productsDescription));
+
+        OrdersProducts ordersProducts = new OrdersProducts(cart, products.getProductsPrice(),
+            productsDescription.getProductsName());
+        ordersProducts.setOrderId(orderRecordToPersist.getOrderId());
+
+        restCheckoutMockMvc.perform(
+            post("/api/createOrdersRecord")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(cartList)))
+            .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    public void testCheckout() throws Exception {
+        OrderDTO orderDTO = new OrderDTO();
+        Orders orders = new Orders();
+        Optional<Orders> optionalOrderRecord = Optional.ofNullable(orders);
+        Orders savedOrders = new Orders();
+
+        when(mockCheckoutService.getOrdersByOrdersId(orderDTO.getOrderId())).thenReturn(optionalOrderRecord);
+        when(mockCheckoutService.save(new Orders(orderDTO))).thenReturn(savedOrders);
+
+        restCheckoutMockMvc.perform(
+            post("/api/checkout")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
+            .andExpect(status().isCreated());
+    }
+
+    @Test
+    public void testCheckoutOrderNotPresent() throws Exception {
+        OrderDTO orderDTO = new OrderDTO();
+
+        when(mockCheckoutService.getOrdersByOrdersId(orderDTO.getOrderId())).thenReturn(Optional.empty());
+
+        restCheckoutMockMvc.perform(
+            post("/api/checkout")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(orderDTO)))
+            .andExpect(status().isInternalServerError());
     }
 }

@@ -45,22 +45,30 @@ public class CheckoutResource {
         produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.TEXT_PLAIN_VALUE})
     @Timed
     public ResponseEntity createOrdersRecord(@RequestBody List<Cart> cartInvoices) {
-        Orders orderRecordToPersist =  new Orders();
-        orderRecordToPersist.setOrderStatus("initiated");
-        Orders savedOrderRecord = checkoutService.save(orderRecordToPersist);
+        try {
+            Orders orderRecordToPersist =  new Orders();
+            orderRecordToPersist.setOrderStatus("initiated");
+            Orders savedOrderRecord = checkoutService.save(orderRecordToPersist);
 
-        for (Cart cartInvoice : cartInvoices) {
-            Products products = this.productsService
-                .getProductsByProductsId(cartInvoice.getProductsId()).get();
-            ProductsDescription productsDescription = this.productsDescriptionService
-                .getProductsDescriptionByProductsId(products.getProductsId()).get();
-            OrdersProducts ordersProductsRecordToPersist = new OrdersProducts(cartInvoice,
-                products.getProductsPrice(), productsDescription.getProductsName());
-            ordersProductsRecordToPersist.setOrderId(savedOrderRecord.getOrderId());
-            checkoutService.saveOrdersProducts(ordersProductsRecordToPersist);
+            if (!cartInvoices.isEmpty()) {
+                for (Cart cartInvoice : cartInvoices) {
+                    Products products = this.productsService
+                        .getProductsByProductsId(cartInvoice.getProductsId()).get();
+                    ProductsDescription productsDescription = this.productsDescriptionService
+                        .getProductsDescriptionByProductsId(products.getProductsId()).get();
+                    OrdersProducts ordersProductsRecordToPersist = new OrdersProducts(cartInvoice,
+                        products.getProductsPrice(), productsDescription.getProductsName());
+                    ordersProductsRecordToPersist.setOrderId(savedOrderRecord.getOrderId());
+                    checkoutService.saveOrdersProducts(ordersProductsRecordToPersist);
+                }
+                return new ResponseEntity<>(savedOrderRecord, HttpStatus.CREATED);
+            } else {
+                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (Exception e) {
+            log.error("Exception in CheckoutResource.createOrdersRecord", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        return new ResponseEntity<>(savedOrderRecord, HttpStatus.CREATED);
     }
 
     /**

@@ -27,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -169,6 +170,24 @@ public class CheckoutResourceIntTest {
         OrdersProducts ordersProducts = new OrdersProducts(cart, products.getProductsPrice(),
             productsDescription.getProductsName());
         ordersProducts.setOrderId(orderRecordToPersist.getOrderId());
+
+        restCheckoutMockMvc.perform(
+            post("/api/createOrdersRecord")
+                .contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(cartList)))
+            .andExpect(status().isInternalServerError());
+    }
+
+    @Test
+    public void testCreateOrdersRecordException() throws Exception {
+        Cart cart = new Cart();
+        cart.setProductsId(1L);
+        cart.setId(0L);
+        List<Cart> cartList =  new ArrayList<>();
+
+        Orders orderRecordToPersist = new Orders();
+        orderRecordToPersist.setOrderStatus("initiated");
+        when(mockCheckoutService.save(orderRecordToPersist)).thenThrow(new RuntimeException());
 
         restCheckoutMockMvc.perform(
             post("/api/createOrdersRecord")

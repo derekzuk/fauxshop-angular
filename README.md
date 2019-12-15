@@ -3,7 +3,7 @@
 # fauxshopangular
 This application was generated using JHipster 4.14.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.0](http://www.jhipster.tech/documentation-archive/v4.14.0).
 
-<img src="https://github.com/derekzuk/fauxshop-angular/src/main/webapp/content/images/fauxshop-screengrab.png" width="960" height="622"/>
+<img src="https://github.com/derekzuk/fauxshop-angular/blob/master/src/main/webapp/content/images/fauxshop-screengrab.png" width="823" height="464"/>
 
 ## Development
 

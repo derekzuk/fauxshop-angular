@@ -3,6 +3,8 @@
 # fauxshopangular
 This application was generated using JHipster 4.14.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.0](http://www.jhipster.tech/documentation-archive/v4.14.0).
 
+<img src="https://github.com/derekzuk/fauxshop-angular/src/main/webapp/content/images/fauxshop-screengrab.png" width="960" height="622"/>
+
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
